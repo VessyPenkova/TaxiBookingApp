@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp", "TaxiBookingApp\TaxiBookingApp.csproj", "{D645D530-B56A-4B7B-A331-078323E56B49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiBookingApp", "TaxiBookingApp\TaxiBookingApp.csproj", "{D645D530-B56A-4B7B-A331-078323E56B49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp.Infrastucture", "TaxiBookingApp.Infrastucture\TaxiBookingApp.Infrastucture.csproj", "{48F4969E-BFF8-48C3-89ED-50D40E699756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiBookingApp.Infrastucture", "TaxiBookingApp.Infrastucture\TaxiBookingApp.Infrastucture.csproj", "{48F4969E-BFF8-48C3-89ED-50D40E699756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp.Core", "TaxiBookingApp.Core\TaxiBookingApp.Core.csproj", "{D4933E39-1037-4F01-803C-70672F6705D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxiBookingApp.Core", "TaxiBookingApp.Core\TaxiBookingApp.Core.csproj", "{D4933E39-1037-4F01-803C-70672F6705D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
