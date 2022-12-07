@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp", "TaxiBookingApp\TaxiBookingApp.csproj", "{D645D530-B56A-4B7B-A331-078323E56B49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp.Infrastucture", "TaxiBookingApp.Infrastucture\TaxiBookingApp.Infrastucture.csproj", "{48F4969E-BFF8-48C3-89ED-50D40E699756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiBookingApp.Core", "TaxiBookingApp.Core\TaxiBookingApp.Core.csproj", "{D4933E39-1037-4F01-803C-70672F6705D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D645D530-B56A-4B7B-A331-078323E56B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D645D530-B56A-4B7B-A331-078323E56B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D645D530-B56A-4B7B-A331-078323E56B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48F4969E-BFF8-48C3-89ED-50D40E699756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48F4969E-BFF8-48C3-89ED-50D40E699756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48F4969E-BFF8-48C3-89ED-50D40E699756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48F4969E-BFF8-48C3-89ED-50D40E699756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4933E39-1037-4F01-803C-70672F6705D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4933E39-1037-4F01-803C-70672F6705D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4933E39-1037-4F01-803C-70672F6705D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4933E39-1037-4F01-803C-70672F6705D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
