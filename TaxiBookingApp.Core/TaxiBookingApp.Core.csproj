@@ -10,4 +10,10 @@
     <ProjectReference Include="..\TaxiBookingApp.Infrastucture\TaxiBookingApp.Infrastucture.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Constans\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>

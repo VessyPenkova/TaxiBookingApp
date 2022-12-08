@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
-    public  class TaxiRouteDetailsModel
+    public  class TaxiRouteDetailsModel : TaxiRouteServiceModel
     {
+        public string Description { get; set; } = null!;
+
+        public string Category { get; set; } = null!;
+
+        public DriverCarServiceModel DriverCra { get; set; }
     }
 }
