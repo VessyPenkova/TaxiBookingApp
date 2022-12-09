@@ -1,4 +1,4 @@
-﻿
+﻿using TaxiBookingApp.Core.Models.Statistics;
 
 namespace TaxiBookingApp.Core.Contracts
 {

@@ -1,8 +1,6 @@
-﻿
-
-namespace TaxiBookingApp.Core.Contracts
+﻿namespace TaxiBookingApp.Core.Contracts
 {
-    internal interface IDriverCarService
+    public interface IDriverCarService
     {
         Task<bool> ExistsById(string userId);
 
@@ -12,6 +10,6 @@ namespace TaxiBookingApp.Core.Contracts
 
         Task Create(string userId, string phoneNumber);
 
-        Task<int> GetAgentId(string userId);
+        Task<int> GetDriverCarId(int driverCarId);
     }
 }

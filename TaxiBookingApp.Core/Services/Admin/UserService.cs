@@ -1,13 +1,9 @@
 ﻿using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Models.Admin;
-using TaxiBookingApp.Infrastructure.Data;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using TaxiBookingApp.Infrastucture.Data.Models;
 
 namespace TaxiBookingApp.Core.Services.Admin
 {
@@ -24,7 +20,7 @@ namespace TaxiBookingApp.Core.Services.Admin
         {
             List<UserServiceModel> result;
 
-            result = await repo.AllReadonly<Agent>()
+            result = await repo.AllReadonly<DriverCar>()
                 .Select(a => new UserServiceModel()
                 {
                     UserId = a.UserId,
@@ -34,10 +30,10 @@ namespace TaxiBookingApp.Core.Services.Admin
                 })
                 .ToListAsync();
 
-            string[] agentIds = result.Select(a => a.UserId).ToArray();
+            string[] driverCarIds = result.Select(d => d.UserId).ToArray();
 
             result.AddRange(await repo.AllReadonly<ApplicationUser>()
-                .Where(u => agentIds.Contains(u.Id) == false)
+                .Where(u => driverCarIds.Contains(u.Id) == false)
                 .Select(u => new UserServiceModel()
                 {
                     UserId = u.Id,

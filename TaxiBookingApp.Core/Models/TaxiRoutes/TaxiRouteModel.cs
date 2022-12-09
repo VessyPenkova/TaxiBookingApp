@@ -8,7 +8,7 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
     public class TaxiRouteModel : ITaxiRouteModel
     {
-        public int TaxiRouteId => throw new NotImplementedException();
+        public int TaxiRouteId { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 10)]
@@ -37,7 +37,7 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
         [Required]
         [Display(Name = "Price")]
         [Range(0.00, 2000.00, ErrorMessage = "Price for trip must be a positive number and less than {2} leva")]
-        public decimal PricePerMonth { get; set; }
+        public decimal Price { get; set; }
 
         [Display(Name = "Category")]
         public int CategoryId { get; set; }

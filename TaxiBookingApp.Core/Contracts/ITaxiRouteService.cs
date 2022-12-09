@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models.TaxiRoutes;
 
 namespace TaxiBookingApp.Core.Services
 {
@@ -15,7 +10,7 @@ namespace TaxiBookingApp.Core.Services
 
         Task<bool> CategoryExists(int categoryId);
 
-        Task<int> Create(TaxiRouteModel model, int agentId);
+        Task<int> Create(TaxiRouteModel model, int driverCarId);
 
         Task<TaxiRoutesQueryModel> All(
             string? category = null,
@@ -26,7 +21,7 @@ namespace TaxiBookingApp.Core.Services
 
         Task<IEnumerable<string>> AllCategoriesNames();
 
-        Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRoutesByDriverCarId(int id);
+        Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRoutesByDriverCarId(int );
 
         Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRouteByUserId(string userId);
 

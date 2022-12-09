@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TaxiBookingApp.Core.Models.DriverCar;
 
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
@@ -12,6 +8,6 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 
         public string Category { get; set; } = null!;
 
-        public DriverCarServiceModel DriverCra { get; set; }
+        public DriverCarServiceModel DriverCar { get; set; }
     }
 }

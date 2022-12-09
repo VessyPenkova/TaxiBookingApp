@@ -1,4 +1,6 @@
 ﻿
+using TaxiBookingApp.Core.Models.Admin;
+
 namespace TaxiBookingApp.Core.Contracts.Admin
 {
     public interface IUserService

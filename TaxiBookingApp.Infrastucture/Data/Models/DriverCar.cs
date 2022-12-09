@@ -7,7 +7,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Models
     public class DriverCar
     {
         [Key]
-        public int DriverCarId { get; set; }
+        public int DriverCarId { get; set; } 
 
         [Required]
         [StringLength(15)]
@@ -17,7 +17,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Models
         public string UserId { get; set; } = null!;
 
         [ForeignKey(nameof(UserId))]
-        public IdentityUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
     }
 }

@@ -26,7 +26,7 @@ namespace TaxiBookingApp.Infrastructure.Data.Common
         {
             return this.Context.Set<T>();
         }
-
+        //                ApplicationDbContext
         public Repository(ApplicationDbContext context)
         {
             Context = context;

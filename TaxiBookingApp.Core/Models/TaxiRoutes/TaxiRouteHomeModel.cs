@@ -9,12 +9,14 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
     public class TaxiRouteHomeModel : ITaxiRouteModel
     {
+        public int TaxiRouteId { get; init; }
+
         public string Title { get; set; } = null!;
 
         public string PickUpAddress { get; set; } = null!;
 
         public string DeliveryAddress { get; set; } = null!;
 
-        public int TaxiRouteID { get; set; }
+        public string ImageUrlRouteGoogleMaps { get; init; } = null!;
     }
 }

@@ -1,8 +1,6 @@
-﻿
-
-namespace TaxiBookingApp.Core.Models.DriverCar
+﻿namespace TaxiBookingApp.Core.Models.DriverCar
 {
-    public class DriverCarModel
+    public class DriverCarServiceModel
     {
         public string PhoneNumber { get; set; } = null!;
 

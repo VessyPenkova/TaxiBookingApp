@@ -1,7 +1,7 @@
 ﻿
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
-    public enum TaxIRouteSorting
+    public enum TaxiRouteSorting
     {
         Newest = 0,
         Price = 1,
