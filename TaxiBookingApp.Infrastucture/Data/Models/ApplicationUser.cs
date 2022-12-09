@@ -2,7 +2,7 @@
 
 namespace TaxiBookingApp.Infrastucture.Data.Models
 {
-    public  class ApplicationUser : IdentityUser<string>
+    public class ApplicationUser : IdentityUser<string>
     {
         public string? FirstName { get; set; }
 

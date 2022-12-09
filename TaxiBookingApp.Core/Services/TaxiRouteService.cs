@@ -1,5 +1,4 @@
-﻿using TaxiBookingApp.Core.Contracts;
-using TaxiBookingApp.Core.Exceptions;
+﻿using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +8,7 @@ using TaxiBookingApp.Core.Services;
 
 namespace HouseRentingSystem.Core.Services
 {
-    public class TaxiRouteService : ITaxiRoutService
+    public class TaxiRouteService : ITaxiRouteService
     {
         private readonly IRepository repo;
 
@@ -25,9 +24,9 @@ namespace HouseRentingSystem.Core.Services
             repo = _repo;
             guard = _guard;
             logger = _logger;
-        }
-   
-        public async Task<TaxiRoutesQueryModel> All(string? category = null, string? searchTerm = null, TaxiRouteSorting sorting = TaxiRouteSorting.Newest, int currentPage = 1, int taxiRoutesPerPage = 1)
+        } 
+        public async Task<TaxiRoutesQueryModel> All(string? category = null, string? searchTerm = null, 
+        TaxiRouteSorting sorting = TaxiRouteSorting.Newest, int currentPage = 1, int taxiRoutesPerPage = 1)
         {
             var result = new TaxiRoutesQueryModel();
             var taxiRoutes = repo.AllReadonly<TaxiRoute>()
@@ -46,23 +45,9 @@ namespace HouseRentingSystem.Core.Services
                 taxiRoutes = taxiRoutes
                     .Where(h => EF.Functions.Like(h.Title.ToLower(), searchTerm) ||
                         EF.Functions.Like(h.PickUpAddress.ToLower(), searchTerm) ||
+                        EF.Functions.Like(h.DeliveryAddress.ToLower(), searchTerm) ||
                         EF.Functions.Like(h.Description.ToLower(), searchTerm));
             }
-
-            //switch (sorting)
-            //{
-            //    case HouseSorting.Price:
-            //        houses = houses
-            //        .OrderBy(h => h.PricePerMonth);
-            //        break;
-            //    case HouseSorting.NotRentedFirst:
-            //        houses = houses
-            //        .OrderBy(h => h.RenterId);
-            //        break;
-            //    default:
-            //        houses = houses.OrderByDescending(h => h.Id);
-            //        break;
-            //}
 
             taxiRoutes = sorting switch
             {
@@ -79,6 +64,7 @@ namespace HouseRentingSystem.Core.Services
                 .Select(h => new TaxiRouteServiceModel()
                 {
                     PickUpAddress = h.PickUpAddress,
+                    DeliveryAddress = h.DeliveryAddress, 
                     TaxiRouteId = h.TaxiRoutId,
                     ImageUrlRouteGoogleMaps = h.ImageUrlRouteGoogleMaps,
                     IsRented = h.RenterId != null,
@@ -91,7 +77,6 @@ namespace HouseRentingSystem.Core.Services
 
             return result;
         }
-
         public async Task<IEnumerable<TaxiRouteCategoryModel>> AllCategories()
         {
             return await repo.AllReadonly<Category>()
@@ -103,7 +88,6 @@ namespace HouseRentingSystem.Core.Services
                 })
                 .ToListAsync();
         }
-
         public async Task<IEnumerable<string>> AllCategoriesNames()
         {
             return await repo.AllReadonly<Category>()
@@ -111,7 +95,6 @@ namespace HouseRentingSystem.Core.Services
                 .Distinct()
                 .ToListAsync();
         }
-
         public async Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRoutesByDriverCarId(int driverCarId)
         {
             return await repo.AllReadonly<TaxiRoute>()
@@ -129,7 +112,6 @@ namespace HouseRentingSystem.Core.Services
                 })
                 .ToListAsync();
         }
-
         public async Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRouteByUserId(string userId)
         {
             return await repo.AllReadonly<TaxiRoute>()
@@ -147,13 +129,11 @@ namespace HouseRentingSystem.Core.Services
                 })
                 .ToListAsync();
         }
-
         public async Task<bool> CategoryExists(int categoryId)
         {
             return await repo.AllReadonly<Category>()
                 .AnyAsync(c => c.CategoryId == categoryId);
         }
-
         public async Task<int> Create(TaxiRouteModel model, int driverCarId)
         {
             var taxiRoute = new TaxiRoute()
@@ -181,15 +161,13 @@ namespace HouseRentingSystem.Core.Services
 
             return taxiRoute.TaxiRoutId;
         }
-
-        public async Task Delete(int houseId)
+        public async Task Delete(int taxiRouteId)
         {
-            var house = await repo.GetByIdAsync<TaxiRoute>(houseId);
-            house.IsActive = false;
+            var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteId);
+            taxiRoute.IsActive = false;
 
             await repo.SaveChangesAsync();
         }
-
         public async Task Edit(int taxiRouteid, TaxiRouteModel model)
         {
             var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteid);
@@ -204,18 +182,15 @@ namespace HouseRentingSystem.Core.Services
 
             await repo.SaveChangesAsync();
         }
-
         public async Task<bool> Exists(int id)
         {
             return await repo.AllReadonly<TaxiRoute>()
                 .AnyAsync(t => t.TaxiRoutId == id && t.IsActive);
         }
-
         public async Task<int> GetTaxiRouteCategoryId(int taxiRouteId)
         {
             return (await repo.GetByIdAsync<TaxiRoute>(taxiRouteId)).CategoryId;
         }
-
         public async Task<bool> HasDriverCarWithId(int taxiRouteId, string currentUserId)
         {
             bool result = false;
@@ -232,7 +207,6 @@ namespace HouseRentingSystem.Core.Services
 
             return result;
         }
-
         public async Task<TaxiRouteDetailsModel> TaxiRouteDetailsByTaxiRouteId(int taxiRouteId)
         {
             return await repo.AllReadonly<TaxiRoute>()
@@ -258,12 +232,10 @@ namespace HouseRentingSystem.Core.Services
                 })
                 .FirstAsync();
         }
-
         public async Task<bool> IsRented(int taxiRouteId)
         {
             return (await repo.GetByIdAsync<TaxiRoute>(taxiRouteId)).RenterId != null;
         }
-
         public async Task<bool> IsRentedByUserWithId(int taxiRouteId, string currentUserId)
         {
             bool result = false;
@@ -294,7 +266,6 @@ namespace HouseRentingSystem.Core.Services
                 .Take(3)
                 .ToListAsync();
         }
-
         public async Task Leave(int taxiRouteId)
         {
             var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteId);
@@ -303,7 +274,6 @@ namespace HouseRentingSystem.Core.Services
 
             await repo.SaveChangesAsync();
         }
-
         public async Task Rent(int taxiRouteId, string currentUserId)
         {
             var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteId);
@@ -318,7 +288,5 @@ namespace HouseRentingSystem.Core.Services
 
             await repo.SaveChangesAsync();
         }
-
-        
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TaxiBookingApp.Core.Services
 {
-    public interface ITaxiRoutService
+    public interface ITaxiRouteService
     {
         Task<IEnumerable<TaxiRouteHomeModel>> LastThreeTaxiRoutes();
 
@@ -21,7 +21,7 @@ namespace TaxiBookingApp.Core.Services
 
         Task<IEnumerable<string>> AllCategoriesNames();
 
-        Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRoutesByDriverCarId(int );
+        Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRoutesByDriverCarId(int drivercarId);
 
         Task<IEnumerable<TaxiRouteServiceModel>> AllTaxiRouteByUserId(string userId);
 

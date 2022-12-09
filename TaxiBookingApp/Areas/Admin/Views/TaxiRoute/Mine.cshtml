@@ -1,0 +1,36 @@
+﻿@model MytaxiRouteViewModel
+
+@{
+    ViewBag.Title = "My Routes";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>My Added TaxiRoutes</h4>
+
+@if (!Model.AddedTaxiRoutes.Any())
+{
+    <h2 class="text-center">You have no added routes yet!</h2>
+}
+
+<div class="row">
+    @foreach (var taxiRoute in Model.AddedTaxiRoutes)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_HousePartial.cshtml", taxiRoute)
+    }
+</div>
+
+<h4>My Rented taxiRoutes</h4>
+
+@if (!Model.RentedTaxiRoutes.Any())
+{
+    <h2 class="text-center">You have no rented taxiRoute yet!</h2>
+}
+
+<div class="row">
+    @foreach (var taxiRoute in Model.RentedTaxiRoutes)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_HousePartial.cshtml", taxiRoute)
+    }
+</div>

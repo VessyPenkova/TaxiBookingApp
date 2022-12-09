@@ -1,6 +1,4 @@
-﻿
-
-namespace TaxiBookingApp.Core.Models.Admin
+﻿namespace TaxiBookingApp.Core.Models.Admin
 {
     public class UserServiceModel
     {

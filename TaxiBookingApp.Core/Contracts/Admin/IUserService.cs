@@ -1,5 +1,4 @@
-﻿
-using TaxiBookingApp.Core.Models.Admin;
+﻿using TaxiBookingApp.Core.Models.Admin;
 
 namespace TaxiBookingApp.Core.Contracts.Admin
 {

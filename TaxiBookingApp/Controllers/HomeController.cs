@@ -1,26 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using TaxiBookingApp.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TaxiBookingApp.Models;
+using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
+using TaxiBookingApp.Core.Services;
 
-namespace TaxiBookingApp.Controllers
+namespace HouseRentingSystem.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
+        private readonly ITaxiRouteService taxiRouteService;
 
-        public IActionResult Index()
+        public HomeController(ITaxiRouteService _taxiRouteService)
         {
-            return View();
+            taxiRouteService =_taxiRouteService;
         }
 
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+        public async Task<IActionResult> Index()
+        {
+            if (User.IsInRole(AdminRolleName))
+            {
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            }
+
+            var model = await taxiRouteService.LastThreeTaxiRoutes();
+
+            return View(model);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

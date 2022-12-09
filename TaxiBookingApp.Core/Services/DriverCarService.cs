@@ -36,10 +36,10 @@ namespace TaxiBookingApp.Core.Services
 
       
 
-        public async  Task<int> GetDriverCarId(int driverCarId)
+        public async  Task<int> GetDriverCarId(string userId)
         {
             return (await repo.AllReadonly<DriverCar>()
-               .FirstOrDefaultAsync(d => d.DriverCarId == driverCarId))?.DriverCarId ?? 0;
+               .FirstOrDefaultAsync(d => d.UserId == userId))?.DriverCarId ?? 0;
         }
 
  

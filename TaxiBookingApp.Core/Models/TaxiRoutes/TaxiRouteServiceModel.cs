@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using TaxiBookingApp.Core.Contracts;
 
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
@@ -15,14 +9,12 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 
         public string Title { get; init; } = null!;
 
-
         public string PickUpAddress { get; init; } = null!;
 
         public string DeliveryAddress { get; init; } = null!;
 
         [Display(Name = "Image URL")]
         public string ImageUrlRouteGoogleMaps { get; init; } = null!;
-
 
         [Display(Name = "Price for trip")]
         public decimal Price { get; init; }

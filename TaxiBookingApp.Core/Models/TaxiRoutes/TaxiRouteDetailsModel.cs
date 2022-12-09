@@ -1,5 +1,6 @@
 ﻿using TaxiBookingApp.Core.Models.DriverCar;
 
+
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
     public  class TaxiRouteDetailsModel : TaxiRouteServiceModel
