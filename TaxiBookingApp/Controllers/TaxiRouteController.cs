@@ -6,7 +6,7 @@ using TaxiBookingApp.Core.Services;
 using TaxiBookingApp.Extensions;
 using TaxiBookingApp.Models;
 using TaxiBookingApp.Core.Extensions;
-using TaxiBookingApp.Areas.Admin.Controllers
+
 
 namespace TaxiBookingApp.Controllers
 {
