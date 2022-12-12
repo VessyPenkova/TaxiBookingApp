@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Core.Constans;
 using TaxiBookingApp.Core.Contracts;
-using TaxiBookingApp.Core.Models.DriverCar;
+using TaxiBookingApp.Core.Models;
 using TaxiBookingApp.Extensions;
 
 namespace TaxiBookingApp.Controllers

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace TaxiBookingApp.Infrastucture.Data.Models
+namespace TaxiBookingApp.Infrastucture.Data
 {
     public class ApplicationUser : IdentityUser<string>
     {

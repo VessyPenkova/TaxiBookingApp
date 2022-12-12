@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TaxiBookingApp.Infrastucture.Data.Models;
+
 
 namespace TaxiBookingApp.Infrastucture.Data.Configuration
 {
-    internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    public  class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
 
         public void Configure(EntityTypeBuilder<Category> builder)

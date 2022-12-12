@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TaxiBookingApp.Infrastucture.Data.Models
+namespace TaxiBookingApp.Infrastucture.Data
 {
     public class DriverCar
     {
@@ -19,10 +19,9 @@ namespace TaxiBookingApp.Infrastucture.Data.Models
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
 
+       
+
     }
 }
 
-//•	DriverCarId – a unique integer, Primary Key
-//•	PhoneNumber – a string with min length 7 and max length 15 (required)
-//•	UserId – a string(required)
-//•	User – an IdentityUser object
+

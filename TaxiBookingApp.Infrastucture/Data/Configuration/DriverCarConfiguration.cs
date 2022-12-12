@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TaxiBookingApp.Infrastucture.Data.Models;
+
 
 namespace TaxiBookingApp.Infrastucture.Data.Configuration
 {

@@ -2,7 +2,7 @@
 using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Models.Statistics;
 using TaxiBookingApp.Infrastructure.Data.Common;
-using TaxiBookingApp.Infrastucture.Data.Models;
+using TaxiBookingApp.Infrastucture.Data;
 
 namespace TaxiBookingApp.Core.Services
 {

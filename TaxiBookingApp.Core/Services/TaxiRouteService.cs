@@ -1,12 +1,14 @@
-﻿using TaxiBookingApp.Core.Exceptions;
+﻿using TaxiBookingApp.Core.Contracts;
+using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
+using TaxiBookingApp.Infrastucture.Data;
 using TaxiBookingApp.Infrastructure.Data.Common;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using TaxiBookingApp.Infrastucture.Data.Models;
-using TaxiBookingApp.Core.Services;
+using TaxiBookingApp.Core.Models;
 
-namespace HouseRentingSystem.Core.Services
+namespace TaxiBookingApp.Core.Services
 {
     public class TaxiRouteService : ITaxiRouteService
     {
@@ -191,6 +193,8 @@ namespace HouseRentingSystem.Core.Services
         {
             return (await repo.GetByIdAsync<TaxiRoute>(taxiRouteId)).CategoryId;
         }
+
+
         public async Task<bool> HasDriverCarWithId(int taxiRouteId, string currentUserId)
         {
             bool result = false;
@@ -207,6 +211,8 @@ namespace HouseRentingSystem.Core.Services
 
             return result;
         }
+
+
         public async Task<TaxiRouteDetailsModel> TaxiRouteDetailsByTaxiRouteId(int taxiRouteId)
         {
             return await repo.AllReadonly<TaxiRoute>()
@@ -223,7 +229,7 @@ namespace HouseRentingSystem.Core.Services
                     IsRented = t.RenterId != null,
                     Price = t.Price,
                     Title = t.Title,
-                    DriverCar = new TaxiBookingApp.Core.Models.DriverCar.DriverCarServiceModel()
+                    DriverCar = new DriverCarServiceModel()
                     {
                         Email = t.DriverCar.User.Email,
                         PhoneNumber = t.DriverCar.PhoneNumber
@@ -288,5 +294,6 @@ namespace HouseRentingSystem.Core.Services
 
             await repo.SaveChangesAsync();
         }
+
     }
 }

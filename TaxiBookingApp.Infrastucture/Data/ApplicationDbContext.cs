@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TaxiBookingApp.Infrastucture.Data.Configuration;
-using TaxiBookingApp.Infrastucture.Data.Models;
+
 
 namespace TaxiBookingApp.Infrastucture.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,6 +18,8 @@ namespace TaxiBookingApp.Infrastucture.Data
             builder.ApplyConfiguration(new DriverCarConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new TaxiRouteConfiguration());
+            builder.ApplyConfiguration(new CityConfiguration());
+            builder.ApplyConfiguration(new CountyConfiguration());
 
             base.OnModelCreating(builder);
         }
@@ -26,7 +29,10 @@ namespace TaxiBookingApp.Infrastucture.Data
         public DbSet<Category> Categorieses { get; set; } = null!;
 
         public DbSet<DriverCar> DriversCars { get; set; } = null!;
-       
-      
+
+        public DbSet<City> Cities { get; set; } = null!;
+
+        public DbSet<Country> Countries { get; set; } = null!;
+
     }
 }

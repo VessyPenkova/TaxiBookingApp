@@ -1,5 +1,4 @@
-﻿using TaxiBookingApp.Core.Models.DriverCar;
-
+﻿using TaxiBookingApp.Core.Models;
 
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
@@ -9,6 +8,6 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 
         public string Category { get; set; } = null!;
 
-        public DriverCarServiceModel DriverCar { get; set; }
+        public DriverCarServiceModel DriverCar { get; set; } = null!;
     }
 }

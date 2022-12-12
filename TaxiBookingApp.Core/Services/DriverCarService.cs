@@ -1,8 +1,9 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Infrastructure.Data.Common;
-using TaxiBookingApp.Infrastucture.Data.Models;
+using TaxiBookingApp.Infrastucture.Data;
+using TaxiBookingApp.Core.Models;
+
 
 namespace TaxiBookingApp.Core.Services
 {

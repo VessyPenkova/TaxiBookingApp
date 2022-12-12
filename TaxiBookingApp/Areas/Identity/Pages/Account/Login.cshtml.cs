@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using TaxiBookingApp.Infrastucture.Data.Models;
+using TaxiBookingApp.Infrastucture.Data;
 
-namespace HouseRentingSystem.Areas.Identity.Pages.Account
+namespace TaxiBookingApp.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
@@ -15,8 +15,9 @@ namespace HouseRentingSystem.Areas.Identity.Pages.Account
 
         public LoginModel(
             SignInManager<ApplicationUser> signInManager,
-            ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ILogger<LoginModel> logger )
+            
         {
             _signInManager = signInManager;
             _logger = logger;

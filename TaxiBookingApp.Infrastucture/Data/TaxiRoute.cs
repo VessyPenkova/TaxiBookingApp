@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TaxiBookingApp.Infrastucture.Data.Models
+namespace TaxiBookingApp.Infrastucture.Data
 {
     public class TaxiRoute
     {
@@ -44,7 +44,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Models
         public int DriverCarId { get; set; }
 
         [ForeignKey(nameof(DriverCarId))]
-        public DriverCar DriverCar { get; set; } 
+        public DriverCar DriverCar { get; set; } = null!;
 
         public string? RenterId { get; set; }
 
@@ -52,6 +52,11 @@ namespace TaxiBookingApp.Infrastucture.Data.Models
         public ApplicationUser? Renter { get; set; }
 
         public bool IsActive { get; set; } = true;
+        [Required]
+        public int CityId { get; set; }
+        [Required]
+        [ForeignKey(nameof(CityId))]
+        public City City { get; set; } = null!;
 
     }
 }

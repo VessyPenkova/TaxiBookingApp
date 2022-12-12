@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TaxiBookingApp.Infrastucture.Data.Models;
+
 
 namespace TaxiBookingApp.Infrastucture.Data.Configuration
 {
@@ -8,7 +8,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<TaxiRoute> builder)
         {
-            builder.HasData(CreateTaxiRoutes());
+            //builder.HasData(CreateTaxiRoutes());
         }
         private List<TaxiRoute> CreateTaxiRoutes()
         {
@@ -89,15 +89,3 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
         }
     }
 }
-//•	Id – a unique integer, Primary Key
-//•	Title – a string with min length 10 and max length 50 (required)
-//•	PickUpAddress – a string with min length 30 and max length 150 (required)
-//•	DeliveryAddress– a string with min length 30 and max length 150 (required)
-//•	Description – a string with min length 50 and max length 1000 (required)
-//•	ImageUrl(ImageUrlRouteGoogleMaps)– a string(required)
-//•	PricePerMonth(Price) – a decimal with min value 0 and max value 2000 (required)
-//•	CategoryId – an integer(required)
-//•	Category – a Category object
-//•	AgentId( DriverCar Id)– an integer(required)
-//•	Agent(DriverCar)– an Agent(DriverCar)object
-//•	RenterId – a string

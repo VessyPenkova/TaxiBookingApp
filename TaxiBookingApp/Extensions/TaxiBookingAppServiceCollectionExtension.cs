@@ -1,9 +1,9 @@
-﻿using HouseRentingSystem.Core.Services;
+﻿using HouseRentingSystem.Core.Services.Admin;
 using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Services;
-using TaxiBookingApp.Core.Services.Admin;
+
 using TaxiBookingApp.Infrastructure.Data.Common;
 
 namespace TaxiBookingApp.Extensions

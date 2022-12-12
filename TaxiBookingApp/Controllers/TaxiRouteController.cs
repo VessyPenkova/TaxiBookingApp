@@ -1,44 +1,49 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using TaxiBookingApp.Core.Contracts;
+﻿using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
-using TaxiBookingApp.Core.Services;
-using TaxiBookingApp.Extensions;
-using TaxiBookingApp.Models;
 using TaxiBookingApp.Core.Extensions;
-
+using TaxiBookingApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TaxiBookingApp.Extensions;
+using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
+using TaxiBookingApp.Core.Models;
 
 namespace TaxiBookingApp.Controllers
 {
+
     [Authorize]
     public class TaxiRouteController : Controller
     {
         private readonly ITaxiRouteService taxiRouteService;
 
         private readonly IDriverCarService driverCarService;
+
         private readonly ILogger logger;
 
-        public TaxiRouteController(ITaxiRouteService _taxiRouteService,
-            IDriverCarService _drivercarService,
+        public TaxiRouteController(
+           ITaxiRouteService _taxiRouteService,
+           IDriverCarService _driverCarService,
             ILogger<TaxiRouteController> _logger)
         {
             taxiRouteService = _taxiRouteService;
-            driverCarService = _drivercarService;
+            driverCarService = _driverCarService;
             logger = _logger;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> All([FromQuery] AlTaxiRoutesQueryModel query)
+        public async Task<IActionResult> All([FromQuery] AllTaxiRoutesQueryModel query)
         {
             var result = await taxiRouteService.All(
                 query.Category,
                 query.SearchTerm,
                 query.Sorting,
                 query.CurrentPage,
-                AlTaxiRoutesQueryModel.TaxiRoutesPerPage);
+                AllTaxiRoutesQueryModel.TaxiRoutesPerPage);
 
-            query.TotalTaxiRouteCount = result.TotaltaxiRoutesCount;
+
+
+            query.TotalTaxiRoutesCount = result.TotaltaxiRoutesCount;
             query.Categories = await taxiRouteService.AllCategoriesNames();
             query.TaxiRoutes = result.TaxiRoutes;
 
@@ -49,25 +54,23 @@ namespace TaxiBookingApp.Controllers
         {
             if (User.IsInRole(AdminRolleName))
             {
-                return RedirectToAction("Mine", "House", new { area = AreaName });
+                return RedirectToAction("Mine", "TaxiRoute", new { area = AreaName });
             }
 
-            IEnumerable<TaxiRouteServiceModel> myHhouses;
+            IEnumerable<TaxiRouteServiceModel> myTaxiRoutes;
             var userId = User.Id();
 
             if (await driverCarService.ExistsById(userId))
             {
-                int agentId = await driverCarService.GetDriverCarId(userId);
-                myHhouses = await taxiRouteService.AllTaxiRoutesByDriverCarId(agentId);
-            
+                int taxiRouteId = await driverCarService.GetDriverCarId(userId);
+                myTaxiRoutes = await taxiRouteService.AllTaxiRoutesByDriverCarId(taxiRouteId);
             }
             else
             {
-                myHhouses = await taxiRouteService.AllTaxiRouteByUserId(userId);
-
+                myTaxiRoutes = await taxiRouteService.AllTaxiRouteByUserId(userId);
             }
 
-            return View(myHhouses);
+            return View(myTaxiRoutes);
         }
 
         [AllowAnonymous]
@@ -79,7 +82,6 @@ namespace TaxiBookingApp.Controllers
             }
 
             var model = await taxiRouteService.TaxiRouteDetailsByTaxiRouteId(id);
-     
 
             if (information != model.GetInformation())
             {
@@ -96,7 +98,7 @@ namespace TaxiBookingApp.Controllers
         {
             if ((await driverCarService.ExistsById(User.Id())) == false)
             {
-                return RedirectToAction(nameof(DriverCarController.Become), "Agent");
+                return RedirectToAction(nameof(DriverCarController.Become), "DriverCar");
             }
 
             var model = new TaxiRouteModel()
@@ -112,7 +114,7 @@ namespace TaxiBookingApp.Controllers
         {
             if ((await driverCarService.ExistsById(User.Id())) == false)
             {
-                return RedirectToAction(nameof(DriverCarController.Become), "Agent");
+                return RedirectToAction(nameof(DriverCarController.Become), "DriverCar");
             }
 
             if ((await taxiRouteService.CategoryExists(model.CategoryId)) == false)
@@ -127,9 +129,9 @@ namespace TaxiBookingApp.Controllers
                 return View(model);
             }
 
-            int agentId = await driverCarService.GetDriverCarId(User.Id());
+            int driverCarId = await driverCarService.GetDriverCarId(User.Id());
 
-            int id = await taxiRouteService.Create(model, agentId);
+            int id = await taxiRouteService.Create(model, driverCarId);
 
             return RedirectToAction(nameof(Details), new { id = id, information = model.GetInformation() });
         }
@@ -144,7 +146,7 @@ namespace TaxiBookingApp.Controllers
 
             if ((await taxiRouteService.HasDriverCarWithId(id, User.Id())) == false)
             {
-                logger.LogInformation("User with id {0} attempted to open other agent house", User.Id());
+                logger.LogInformation("User with id {0} attempted to open other drivercar taxiRoute", User.Id());
 
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -156,6 +158,7 @@ namespace TaxiBookingApp.Controllers
             {
                 TaxiRouteId = taxiRoute.TaxiRouteId,
                 PickUpAddress = taxiRoute.PickUpAddress,
+                DeliveryAddress = taxiRoute.DeliveryAddress,
                 CategoryId = categoryId,
                 Description = taxiRoute.Description,
                 ImageUrlRouteGoogleMaps = taxiRoute.ImageUrlRouteGoogleMaps,
@@ -170,6 +173,7 @@ namespace TaxiBookingApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, TaxiRouteModel model)
         {
+           
             if (id != model.TaxiRouteId)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
@@ -177,7 +181,7 @@ namespace TaxiBookingApp.Controllers
 
             if ((await taxiRouteService.Exists(model.TaxiRouteId)) == false)
             {
-                ModelState.AddModelError("", "House does not exist");
+                ModelState.AddModelError("", "TaxiRoute does not exist");
                 model.TaxiRouteCategories = await taxiRouteService.AllCategories();
 
                 return View(model);
@@ -221,16 +225,18 @@ namespace TaxiBookingApp.Controllers
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
 
-            var texiRoute = await taxiRouteService.TaxiRouteDetailsByTaxiRouteId(id);
+            var taxiRoute = await taxiRouteService.TaxiRouteDetailsByTaxiRouteId(id);
             var model = new TaxiRouteDetailsViewModel()
             {
-                PickUpAddress = texiRoute.PickUpAddress,
-                ImageUrlRouteGoogleMaps = texiRoute.ImageUrlRouteGoogleMaps,
-                Title = texiRoute.Title
+                PickUpAddress = taxiRoute.PickUpAddress,
+                DeliveryAddress = taxiRoute.DeliveryAddress,
+                ImageUrlRouteGoogleMaps = taxiRoute.ImageUrlRouteGoogleMaps,
+                Title = taxiRoute.Title
             };
 
             return View(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id, TaxiRouteDetailsViewModel model)
@@ -251,25 +257,24 @@ namespace TaxiBookingApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Rent(int taxiRouteId)
+        public async Task<IActionResult> Rent(int id)
         {
-            if ((await taxiRouteService.Exists(taxiRouteId)) == false)
+            if ((await taxiRouteService.Exists(id)) == false)
             {
                 return RedirectToAction(nameof(All));
             }
 
-            if (!User.IsInRole() && await driverCarService.ExistsById(User.Id()))
+            if (!User.IsInRole(AdminRolleName) && await driverCarService.ExistsById(User.Id()))
             {
-                //AdminRolleName
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
 
-            if (await taxiRouteService.IsRented(taxiRouteId))
+            if (await taxiRouteService.IsRented(id))
             {
                 return RedirectToAction(nameof(All));
             }
 
-            await taxiRouteService.Rent(taxiRouteId, User.Id());
+            await taxiRouteService.Rent(id, User.Id());
 
             return RedirectToAction(nameof(Mine));
         }

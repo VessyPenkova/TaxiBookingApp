@@ -1,4 +1,4 @@
-﻿namespace TaxiBookingApp.Core.Models.DriverCar
+﻿namespace TaxiBookingApp.Core.Models
 {
     public class DriverCarServiceModel
     {

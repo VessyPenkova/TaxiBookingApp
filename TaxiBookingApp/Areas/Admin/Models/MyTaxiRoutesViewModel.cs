@@ -1,6 +1,6 @@
 ﻿using TaxiBookingApp.Core.Models.TaxiRoutes;
 
-namespace TaxiBookingApp.Areas.Admin.Views
+namespace TaxiBookingApp.Areas.Admin.Models
 {
     public class MyTaxiRoutesViewModel
     {

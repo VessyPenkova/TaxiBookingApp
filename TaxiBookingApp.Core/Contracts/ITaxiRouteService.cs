@@ -1,6 +1,7 @@
-﻿using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models;
+using TaxiBookingApp.Core.Models.TaxiRoutes;
 
-namespace TaxiBookingApp.Core.Services
+namespace TaxiBookingApp.Core.Contracts
 {
     public interface ITaxiRouteService
     {

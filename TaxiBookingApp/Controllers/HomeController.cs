@@ -4,6 +4,7 @@ using System.Diagnostics;
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
 using TaxiBookingApp.Core.Services;
 using Microsoft.AspNetCore.Diagnostics;
+using TaxiBookingApp.Core.Contracts;
 
 namespace HouseRentingSystem.Controllers
 {

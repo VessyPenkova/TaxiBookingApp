@@ -1,7 +1,7 @@
-﻿@model MytaxiRouteViewModel
+﻿@model MyTaxiRoutesViewModel
 
 @{
-    ViewBag.Title = "My Routes";
+    ViewBag.Title = "MyTaxiRoutes";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
@@ -17,11 +17,11 @@
 <div class="row">
     @foreach (var taxiRoute in Model.AddedTaxiRoutes)
     {
-        @await Html.PartialAsync("~/Views/Shared/_HousePartial.cshtml", taxiRoute)
+        @await Html.PartialAsync("~/Views/Shared/_TaxiRoutePartial.cshtml", taxiRoute)
     }
 </div>
 
-<h4>My Rented taxiRoutes</h4>
+<h4>My Rented TaxiRoutes</h4>
 
 @if (!Model.RentedTaxiRoutes.Any())
 {

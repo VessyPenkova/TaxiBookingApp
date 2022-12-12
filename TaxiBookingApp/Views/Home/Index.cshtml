@@ -1,4 +1,5 @@
-﻿@model IEnumerable<HomeModel>
+﻿@using TaxiBookingApp.Core.Extensions
+@model IEnumerable<TaxiRouteHomeModel>
 @{
     ViewData["Title"] = "Home Page";
     bool first = true;
@@ -7,17 +8,17 @@
 @if (Model.Count() == 0)
 {
     <div class="mt-4 p-5 bg-light">
-        <h1 class="display-4">Welcome to the best place for renting houses!</h1>
+        <h1 class="display-4">Welcome to the best place for book a trip!</h1>
         <p class="lead">
-            There are no houses in the system currently available
+            There are no taxi or routes in the system currently available
             so why don't you just add one?
         </p>
         <hr class="my-4">
         <p class="lead">
             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
             {
-                <a asp-controller="House" asp-action="Add" class="btn btn-primary btn-lg"
-           role="button">Add House</a>
+                <a asp-controller="TaxiRoute" asp-action="Add" class="btn btn-primary btn-lg"
+           role="button">Add Taxi Route</a>
             }
         </p>
     </div>
@@ -27,16 +28,16 @@
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        @foreach (var house in Model)
+        @foreach (var taxiRoute in Model)
         {
             <div class="carousel-item @(first ? "active" : string.Empty)">
 
                 <img class="d-block w-100" style="height:500px"
-                 src="@house.ImageUrl" alt="@house.Title">
+                 src="@taxiRoute.ImageUrlRouteGoogleMaps" alt="@taxiRoute.Title">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>
-                        <a class="btn btn-primary" asp-controller="House" asp-action="Details"
-                       asp-route-id="@house.Id" asp-route-information="@house.GetInformation()" > @house.Title</a>
+                        <a class="btn btn-primary" asp-controller="TaxiRoute" asp-action="Details"
+                       asp-route-id="@taxiRoute.TaxiRouteId" asp-route-information="@taxiRoute.GetInformation()"> @taxiRoute.Title</a>
                     </h5>
                 </div>
             </div>
@@ -62,7 +63,7 @@
 
 <div class="mt-4 p-5 bg-light d-none" id="statistics">
     <div class="row">
-        <h2 class="col-md-6 text-center" id="total-houses"></h2>
+        <h2 class="col-md-6 text-center" id="total-taxiRoutes"></h2>
     <h2 class="col-md-6 text-center" id="total-rents"></h2>
     </div>
 </div>
@@ -70,7 +71,7 @@
     <script>
         $('#statistics-button').on('click', ev => {
             $.get('https://localhost:7035/api/statistics', (data) => {
-                $('#total-houses').text(data.totalHouses + "Houses");
+                $('#total-taxiRoutes').text(data.totaltaxiRoutes + "TaxiRoutes");
                 $('#total-rents').text(data.totalRents + " Rents");
                 $('#statistics').removeClass('d-none');
                 $('#statistics-button').hide();

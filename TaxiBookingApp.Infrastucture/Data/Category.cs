@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TaxiBookingApp.Infrastucture.Data.Models
+namespace TaxiBookingApp.Infrastucture.Data
 {
     public class Category
     {

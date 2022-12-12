@@ -1,25 +1,15 @@
-﻿using TaxiBookingApp.Core.Contracts.Admin;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Models.Admin;
 using TaxiBookingApp.Infrastructure.Data.Common;
-using Microsoft.EntityFrameworkCore;
+using TaxiBookingApp.Infrastucture.Data;
 
-using TaxiBookingApp.Infrastucture.Data.Models;
-using Microsoft.AspNetCore.Identity;
-
-namespace TaxiBookingApp.Core.Services.Admin
+namespace HouseRentingSystem.Core.Services.Admin
 {
-    public  class UserService : IUserService
+    public class UserService : IUserService
     {
         private readonly IRepository repo;
-
-        public UserService(IRepository _repo)
-        {
-            repo = _repo;
-        }
-
-        public async Task<IEnumerable<UserServiceModel>> All()
-        {
-            private readonly IRepository repo;
 
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -35,7 +25,7 @@ namespace TaxiBookingApp.Core.Services.Admin
         {
             List<UserServiceModel> result;
 
-            result = await repo.AllReadonly<Agent>()
+            result = await repo.AllReadonly<DriverCar>()
                 .Where(a => a.User.IsActive)
                 .Select(a => new UserServiceModel()
                 {

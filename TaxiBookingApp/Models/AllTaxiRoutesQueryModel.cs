@@ -1,8 +1,9 @@
-﻿using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models;
+using TaxiBookingApp.Core.Models.TaxiRoutes;
 
 namespace TaxiBookingApp.Models
 {
-    public class AlTaxiRoutesQueryModel
+    public class AllTaxiRoutesQueryModel
     {
         public const int TaxiRoutesPerPage = 3;
 
@@ -14,7 +15,7 @@ namespace TaxiBookingApp.Models
 
         public int CurrentPage { get; set; } = 1;
 
-        public int TotalTaxiRouteCount { get; set; }
+        public int TotalTaxiRoutesCount { get; set; }
 
         public IEnumerable<string> Categories { get; set; } = Enumerable.Empty<string>();
 

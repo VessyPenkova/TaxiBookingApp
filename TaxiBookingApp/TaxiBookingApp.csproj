@@ -19,4 +19,8 @@
     <ProjectReference Include="..\TaxiBookingApp.Core\TaxiBookingApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\ServiceDependencies\" />
+  </ItemGroup>
+
 </Project>

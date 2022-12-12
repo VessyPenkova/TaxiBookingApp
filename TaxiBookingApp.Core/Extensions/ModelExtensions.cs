@@ -21,7 +21,8 @@ namespace TaxiBookingApp.Core.Extensions
         private static string GetPickUpAddressAddress(string pickUpAddress)
         {
             string result = string
-                .Join("-", pickUpAddress.Split(" ", StringSplitOptions.RemoveEmptyEntries).Take(3));
+                .Join("-", pickUpAddress.Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .Take(3));
 
             return Regex.Replace(pickUpAddress, @"[^a-zA-Z0-9\-]", string.Empty);
         }
@@ -29,7 +30,8 @@ namespace TaxiBookingApp.Core.Extensions
         private static string GetDeliveryAddressAddress(string deliveryUpAddress)
         {
             string result = string
-                .Join("-", deliveryUpAddress.Split(" ", StringSplitOptions.RemoveEmptyEntries).Take(3));
+                .Join("-", deliveryUpAddress.Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .Take(3));
 
             return Regex.Replace(deliveryUpAddress, @"[^a-zA-Z0-9\-]", string.Empty);
 
