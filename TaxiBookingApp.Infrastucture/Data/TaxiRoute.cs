@@ -8,7 +8,7 @@ namespace TaxiBookingApp.Infrastucture.Data
     public class TaxiRoute
     {
         [Key]
-        public int TaxiRoutId { get; set; }
+        public int TaxiRouteId { get; set; }
 
         [Required]
         [StringLength(50)]

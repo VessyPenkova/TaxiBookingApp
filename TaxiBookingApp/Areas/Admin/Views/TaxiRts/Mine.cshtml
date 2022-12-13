@@ -31,6 +31,6 @@
 <div class="row">
     @foreach (var taxiRoute in Model.RentedTaxiRoutes)
     {
-        @await Html.PartialAsync("~/Views/Shared/_HousePartial.cshtml", taxiRoute)
+        @await Html.PartialAsync("~/Views/Shared/_TaxiRoutePartial.cshtml", taxiRoute)
     }
 </div>

@@ -57,7 +57,7 @@ namespace TaxiBookingApp.Core.Services
                     .OrderBy(h => h.Price),
                 TaxiRouteSorting.NotRentedFirst => taxiRoutes
                     .OrderBy(h => h.RenterId),
-                _ => taxiRoutes.OrderByDescending(h => h.TaxiRoutId)
+                _ => taxiRoutes.OrderByDescending(h => h.TaxiRouteId)
             };
 
             result.TaxiRoutes = await taxiRoutes
@@ -67,7 +67,7 @@ namespace TaxiBookingApp.Core.Services
                 {
                     PickUpAddress = h.PickUpAddress,
                     DeliveryAddress = h.DeliveryAddress, 
-                    TaxiRouteId = h.TaxiRoutId,
+                    TaxiRouteId = h.TaxiRouteId,
                     ImageUrlRouteGoogleMaps = h.ImageUrlRouteGoogleMaps,
                     IsRented = h.RenterId != null,
                     Price = h.Price,
@@ -106,7 +106,7 @@ namespace TaxiBookingApp.Core.Services
                 {
                     PickUpAddress = c.PickUpAddress,
                     DeliveryAddress = c.DeliveryAddress, 
-                    TaxiRouteId = c.TaxiRoutId,
+                    TaxiRouteId = c.TaxiRouteId,
                     ImageUrlRouteGoogleMaps = c.ImageUrlRouteGoogleMaps,
                     IsRented = c.RenterId != null,
                     Price = c.Price,
@@ -123,7 +123,7 @@ namespace TaxiBookingApp.Core.Services
                 {
                     PickUpAddress = c.PickUpAddress,
                     DeliveryAddress = c.DeliveryAddress,
-                    TaxiRouteId = c.TaxiRoutId,
+                    TaxiRouteId = c.TaxiRouteId,
                     ImageUrlRouteGoogleMaps = c.ImageUrlRouteGoogleMaps,
                     IsRented = c.RenterId != null,
                     Price = c.Price,
@@ -161,7 +161,7 @@ namespace TaxiBookingApp.Core.Services
                 throw new ApplicationException("Database failed to save info", ex);
             }
 
-            return taxiRoute.TaxiRoutId;
+            return taxiRoute.TaxiRouteId;
         }
         public async Task Delete(int taxiRouteId)
         {
@@ -187,7 +187,7 @@ namespace TaxiBookingApp.Core.Services
         public async Task<bool> Exists(int id)
         {
             return await repo.AllReadonly<TaxiRoute>()
-                .AnyAsync(t => t.TaxiRoutId == id && t.IsActive);
+                .AnyAsync(t => t.TaxiRouteId == id && t.IsActive);
         }
         public async Task<int> GetTaxiRouteCategoryId(int taxiRouteId)
         {
@@ -200,7 +200,7 @@ namespace TaxiBookingApp.Core.Services
             bool result = false;
             var taxiRoute = await repo.AllReadonly<TaxiRoute>()
                 .Where(t => t.IsActive)
-                .Where(t => t.TaxiRoutId == taxiRouteId)
+                .Where(t => t.TaxiRouteId == taxiRouteId)
                 .Include(t => t.DriverCar)
                 .FirstOrDefaultAsync();
 
@@ -217,7 +217,7 @@ namespace TaxiBookingApp.Core.Services
         {
             return await repo.AllReadonly<TaxiRoute>()
                 .Where(t => t.IsActive)
-                .Where(t => t.TaxiRoutId == taxiRouteId)
+                .Where(t => t.TaxiRouteId == taxiRouteId)
                 .Select(t => new TaxiRouteDetailsModel()
                 {
                     PickUpAddress = t.PickUpAddress,
@@ -247,7 +247,7 @@ namespace TaxiBookingApp.Core.Services
             bool result = false;
             var taxiRoute = await repo.AllReadonly<TaxiRoute>()
                 .Where(t => t.IsActive)
-                .Where(t => t.TaxiRoutId == taxiRouteId)
+                .Where(t => t.TaxiRouteId == taxiRouteId)
                 .FirstOrDefaultAsync();
 
             if (taxiRoute != null && taxiRoute.RenterId == currentUserId)
@@ -261,10 +261,10 @@ namespace TaxiBookingApp.Core.Services
         {
             return await repo.AllReadonly<TaxiRoute>()
                 .Where(t => t.IsActive)
-                .OrderByDescending(t => t.TaxiRoutId)
+                .OrderByDescending(t => t.TaxiRouteId)
                 .Select(t => new TaxiRouteHomeModel()
                 {
-                    TaxiRouteId = t.TaxiRoutId,
+                    TaxiRouteId = t.TaxiRouteId,
                     ImageUrlRouteGoogleMaps = t.ImageUrlRouteGoogleMaps,
                     Title = t.Title,
                     PickUpAddress = t.PickUpAddress

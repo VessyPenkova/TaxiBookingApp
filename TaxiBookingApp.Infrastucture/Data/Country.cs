@@ -10,7 +10,7 @@ namespace TaxiBookingApp.Infrastucture.Data
     public  class Country
     {
         public int CountyId { get; set; }
-        public string CountryName{ get; set; }
+        public string CountryName { get; set; } = null!;
 
         public bool IsActive { get; set; } = true;
     }

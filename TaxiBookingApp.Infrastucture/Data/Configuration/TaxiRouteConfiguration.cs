@@ -30,7 +30,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 },
                  new TaxiRoute()
                 {
-                    TaxiRoutId = 22,
+                    TaxiRouteId = 22,
                     Title ="Sared",
                     PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
                     DeliveryAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
@@ -44,7 +44,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 },
                     new TaxiRoute()
                 {
-                    TaxiRoutId = 33,
+                    TaxiRouteId = 33,
                     Title ="Sared with One",
                     PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
                     DeliveryAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
@@ -58,7 +58,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 },
                    new TaxiRoute()
                 {
-                    TaxiRoutId = 44,
+                    TaxiRouteId = 44,
                     Title ="Sared",
                     PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                     DeliveryAddress = "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria",
@@ -72,7 +72,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 },
                         new TaxiRoute()
                 {
-                    TaxiRoutId = 55,
+                    TaxiRouteId = 55,
                     Title ="Sared",
                     PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                     DeliveryAddress = "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria",

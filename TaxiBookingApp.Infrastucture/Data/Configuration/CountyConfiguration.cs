@@ -18,7 +18,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
 
         public  List<Country> CreateCity()
         {
-            List<Country> ciies = new List<Country>()
+            List<Country> countries = new List<Country>()
             {
                 new Country()
                 {
@@ -45,7 +45,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 },
 
             };
-            return ciies;
+            return countries;
         }
     }
 }
