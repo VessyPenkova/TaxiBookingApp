@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 using TaxiBookingApp.Core.Contracts;
 
 namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
     public class TaxiRouteModel : ITaxiRouteModel
     {
+        [Key]
         public int TaxiRouteId { get; set; }
 
         [Required]

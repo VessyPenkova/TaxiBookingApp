@@ -7,6 +7,6 @@ namespace TaxiBookingApp.Core.Models
     {
         public int CitiId { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
     }
 }

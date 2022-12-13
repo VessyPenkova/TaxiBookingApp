@@ -1,13 +1,22 @@
-﻿@model MyTaxiRoutesViewModel
+﻿@using TaxiBookingApp
+@using TaxiBookingApp.Models
+@using TaxiBookingApp.Core.Models
+@using TaxiBookingApp.Core.Models.TaxiRoutes
+@using TaxiBookingApp.Core.Models.Statistics
+@using TaxiBookingApp.Core.Extensions
+@using TaxiBookingApp.Core.Models.Admin
+@using TaxiBookingApp.Areas.Admin.Models
+
+@model MyTaxiRoutesViewModel
 
 @{
-    ViewBag.Title = "MyTaxiRoutes";
+    ViewBag.Title = "My Taxi Routes";
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<h4>My Added TaxiRoutes</h4>
+<h4>My Added Taxi Routes</h4>
 
 @if (!Model.AddedTaxiRoutes.Any())
 {
@@ -21,11 +30,11 @@
     }
 </div>
 
-<h4>My Rented TaxiRoutes</h4>
+<h4>My Booked Taxi Routes</h4>
 
 @if (!Model.RentedTaxiRoutes.Any())
 {
-    <h2 class="text-center">You have no rented taxiRoute yet!</h2>
+    <h2 class="text-center">You have no booked taxiRoute yet!</h2>
 }
 
 <div class="row">

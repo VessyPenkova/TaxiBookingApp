@@ -16,7 +16,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
             {
                 new TaxiRoute()
                 {
-                    TaxiRoutId = 11,
+                    TaxiRouteId = 11,
                     Title ="Pivate Luxury",
                     PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                     DeliveryAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",

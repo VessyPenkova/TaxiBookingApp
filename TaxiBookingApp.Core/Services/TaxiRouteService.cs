@@ -194,7 +194,6 @@ namespace TaxiBookingApp.Core.Services
             return (await repo.GetByIdAsync<TaxiRoute>(taxiRouteId)).CategoryId;
         }
 
-
         public async Task<bool> HasDriverCarWithId(int taxiRouteId, string currentUserId)
         {
             bool result = false;
@@ -267,7 +266,8 @@ namespace TaxiBookingApp.Core.Services
                     TaxiRouteId = t.TaxiRouteId,
                     ImageUrlRouteGoogleMaps = t.ImageUrlRouteGoogleMaps,
                     Title = t.Title,
-                    PickUpAddress = t.PickUpAddress
+                    PickUpAddress = t.PickUpAddress, 
+                    DeliveryAddress = t.DeliveryAddress
                 })
                 .Take(3)
                 .ToListAsync();

@@ -7,10 +7,10 @@
     <p class="lead mb-1 mt-3">
         This is your administrator area - you can <b>read</b>, <b>create</b>,
         <b>delete</b> and <b>edit</b> taxi routes.
-        <br />You can <b>rent</b> and <b>leave</b> the free ones, too!
+        <br />You can <b>book</b> and <b>leave</b> the free ones, too!
     </p>
     <p class="lead mt-1">
-        You can also see <b>all users and taxi drivers</b> and <b>all rents</b> in the system.
+        You can also see <b>all users and taxi drivers</b> and <b>all bookings</b> in the site.
     </p>
     <hr class="my-4">
     <a asp-area="" asp-controller="Taxi Route" asp-action="All"
@@ -21,8 +21,8 @@
     <a asp-area="Admin" asp-controller="Taxi Route" asp-action="Mine"
        class="btn btn-primary btn-lg">My Taxi Route</a>
     <span>  |   </span>
-    <a asp-area="Admin" asp-controller="Rents" asp-action="All"
-       class="btn btn-primary btn-lg">All Rents</a>
+    <a asp-area="Admin" asp-controller="Bookings" asp-action="All"
+       class="btn btn-primary btn-lg">All Bookingss</a>
     <a asp-area="Admin" asp-controller="Users" asp-action="All"
        class="btn btn-primary btn-lg">All Users</a>
 </div>

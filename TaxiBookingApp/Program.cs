@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TaxiBookingApp.Extensions;
 using TaxiBookingApp.Infrastucture.Data;
+using TaxiBookingApp.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +21,17 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequiredLength = 4;
     options.Password.RequireNonAlphanumeric = false;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+    {
+        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+        options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+    });
+builder.Services.AddApplicationServices();
+builder.Services.AddResponseCaching();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,9 +54,29 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+     name: "default",
+     pattern: "{controller=Home}/{action=Index}/{id?}"
+   );
+
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+    endpoints.MapControllerRoute(
+      name: "houseDetails",
+      pattern: "House/Details/{id}/{information}"
+    );
+
+    endpoints.MapRazorPages();
+
+});
+   
+
 app.MapRazorPages();
 
 app.Run();

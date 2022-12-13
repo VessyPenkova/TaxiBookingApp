@@ -7,11 +7,6 @@ using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Core.Services;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using TaxiBookingApp.Infrastucture.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaxBookingApp.UnitTests
 {
@@ -52,12 +47,13 @@ namespace TaxBookingApp.UnitTests
                 DeliveryAddress ="",
                 ImageUrlRouteGoogleMaps = "",
                 Title = "",
-                Description = ""
+                Description = "",
+                Price = 0,
             });
 
             await repo.SaveChangesAsync();
 
-            await TaxiRouteService.Edit( 1, new TaxiRouteModel()
+            await TaxiRouteService.Edit(1, new TaxiRouteModel()
             {
                 TaxiRouteId = 1,
                 PickUpAddress = "",
@@ -83,7 +79,7 @@ namespace TaxBookingApp.UnitTests
             await repo.AddRangeAsync(new List<TaxiRoute>()
             {
                 new TaxiRoute() { TaxiRouteId = 1, PickUpAddress = "", DeliveryAddress = "", ImageUrlRouteGoogleMaps = "", Title = "", Description = "" },
-                new TaxiRoute() { TaxiRouteId = 3, PickUpAddress = "", DeliveryAddress = "", ImageUrlRouteGoogleMaps = "", Title = "", Description = "" }
+                new TaxiRoute() { TaxiRouteId = 3, PickUpAddress = "", DeliveryAddress = "", ImageUrlRouteGoogleMaps = "", Title = "", Description = "" },
                 new TaxiRoute() { TaxiRouteId = 5, PickUpAddress = "", DeliveryAddress = "", ImageUrlRouteGoogleMaps = "", Title = "", Description = "" },
                 new TaxiRoute() { TaxiRouteId = 2, PickUpAddress = "", DeliveryAddress = "", ImageUrlRouteGoogleMaps = "", Title = "", Description = "" },
             });

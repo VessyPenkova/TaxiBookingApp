@@ -19,7 +19,7 @@ namespace TaxiBookingApp.Core.Services
         public CountryService(
             IRepository _repo,
             IGuard _guard,
-            ILogger<TaxiRouteService> _logger)
+            ILogger<CountryService> _logger)
         {
             repo = _repo;
             guard = _guard;

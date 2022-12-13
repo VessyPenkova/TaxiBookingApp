@@ -21,7 +21,8 @@ namespace TaxiBookingApp.Core.Extensions
         private static string GetPickUpAddressAddress(string pickUpAddress)
         {
             string result = string
-                .Join("-", pickUpAddress.Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                .Join("-", pickUpAddress.Split(" ",
+                StringSplitOptions.RemoveEmptyEntries)
                 .Take(3));
 
             return Regex.Replace(pickUpAddress, @"[^a-zA-Z0-9\-]", string.Empty);

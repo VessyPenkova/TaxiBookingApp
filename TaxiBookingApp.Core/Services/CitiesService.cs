@@ -19,7 +19,7 @@ namespace TaxiBookingApp.Core.Services
         public CitiesService(
             IRepository _repo,
             IGuard _guard,
-            ILogger<TaxiRouteService> _logger)
+            ILogger<CitiesService> _logger)
         {
             repo = _repo;
             guard = _guard;
