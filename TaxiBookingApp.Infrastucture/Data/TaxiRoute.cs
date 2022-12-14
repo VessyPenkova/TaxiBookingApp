@@ -52,6 +52,7 @@ namespace TaxiBookingApp.Infrastucture.Data
         public ApplicationUser? Renter { get; set; }
 
         public bool IsActive { get; set; } = true;
+        [Required]
       
         public int CityId { get; set; }
         [Required]
