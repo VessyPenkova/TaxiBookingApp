@@ -1,10 +1,9 @@
-﻿using TaxiBookingApp.Models;
+﻿using TaxiBookingApp.Core.Contracts;
+using TaxiBookingApp.Models;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
-using TaxiBookingApp.Core.Services;
-using Microsoft.AspNetCore.Diagnostics;
-using TaxiBookingApp.Core.Contracts;
 
 namespace HouseRentingSystem.Controllers
 {
@@ -21,7 +20,6 @@ namespace HouseRentingSystem.Controllers
             taxiRouteService = _taxiRouteService;
             logger = _logger;
         }
-
         public async Task<IActionResult> Index()
         {
             if (User.IsInRole(AdminRolleName))
