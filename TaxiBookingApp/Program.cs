@@ -1,13 +1,11 @@
+using TaxiBookingApp.Infrastucture.Data;
+using TaxiBookingApp.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaxiBookingApp.Extensions;
-using TaxiBookingApp.Infrastucture.Data;
-using TaxiBookingApp.ModelBinders;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
@@ -15,15 +13,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
 {
-    options.SignIn.RequireConfirmedAccount = false;
-    options.SignIn.RequireConfirmedEmail = false;
-    options.SignIn.RequireConfirmedPhoneNumber = false;
-    options.Password.RequiredLength = 4;
-    options.Password.RequireNonAlphanumeric = false;
+    options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
+    options.SignIn.RequireConfirmedEmail = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedEmail");
+    options.SignIn.RequireConfirmedPhoneNumber = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedPhoneNumber");
+    options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:RequiredLength");
+    options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
     {
@@ -34,7 +31,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddResponseCaching();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -42,7 +38,6 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -69,7 +64,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
       name: "houseDetails",
-      pattern: "House/Details/{id}/{information}"
+      pattern: "TaxiRoute/Details/{id}/{information}"
     );
 
     endpoints.MapRazorPages();
