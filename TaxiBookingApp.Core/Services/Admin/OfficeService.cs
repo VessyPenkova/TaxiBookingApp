@@ -9,7 +9,7 @@ using TaxiBookingApp.Infrastucture.Data;
 
 namespace TaxiBookingApp.Core.Services.Admin
 {
-    internal class OfficeService : IOfficeService
+    public  class OfficeService : IOfficeService
     {
         private readonly IRepository repo;
 

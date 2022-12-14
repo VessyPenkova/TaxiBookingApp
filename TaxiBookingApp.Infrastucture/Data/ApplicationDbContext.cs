@@ -19,7 +19,7 @@ namespace TaxiBookingApp.Infrastucture.Data
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new TaxiRouteConfiguration());
             builder.ApplyConfiguration(new OfficeConfiguration());
-            builder.ApplyConfiguration(new CountyConfiguration());
+           
 
             base.OnModelCreating(builder);
         }
@@ -30,9 +30,8 @@ namespace TaxiBookingApp.Infrastucture.Data
 
         public DbSet<DriverCar> DriversCars { get; set; } = null!;
 
-        public DbSet<Office> Cities { get; set; } = null!;
+        public DbSet<Office> Offices { get; set; } = null!;
 
-        public DbSet<Country> Countries { get; set; } = null!;
-
+      
     }
 }

@@ -43,47 +43,33 @@ namespace TaxiBookingApp.Core.Services
                 searchTerm = $"%{searchTerm.ToLower()}%";
 
                 taxiRoutes = taxiRoutes
-                    .Where(h => EF.Functions.Like(h.Title.ToLower(), searchTerm) ||
-                        EF.Functions.Like(h.PickUpAddress.ToLower(), searchTerm) ||
-                        EF.Functions.Like(h.DeliveryAddress.ToLower(), searchTerm) ||
-                        EF.Functions.Like(h.Description.ToLower(), searchTerm));
+                    .Where(tr => EF.Functions.Like(tr.Title.ToLower(), searchTerm) ||
+                        EF.Functions.Like(tr.PickUpAddress.ToLower(), searchTerm) ||
+                        EF.Functions.Like(tr.DeliveryAddress.ToLower(), searchTerm) ||
+                        EF.Functions.Like(tr.Description.ToLower(), searchTerm));
             }
-            //switch (sorting)
-            //{
-            //    case HouseSorting.Price:
-            //        houses = houses
-            //        .OrderBy(h => h.PricePerMonth);
-            //        break;
-            //    case HouseSorting.NotRentedFirst:
-            //        houses = houses
-            //        .OrderBy(h => h.RenterId);
-            //        break;
-            //    default:
-            //        houses = houses.OrderByDescending(h => h.Id);
-            //        break;
-            //}
 
             taxiRoutes = sorting switch
             {
                 TaxiRouteSorting.Price => taxiRoutes
-                    .OrderBy(h => h.Price),
+                    .OrderBy(tr => tr.Price),
                 TaxiRouteSorting.NotRentedFirst => taxiRoutes
-                    .OrderBy(h => h.RenterId),
-                _ => taxiRoutes.OrderByDescending(h => h.TaxiRouteId)
+                    .OrderBy(tr => tr.RenterId),
+                _ => taxiRoutes.OrderByDescending(tr => tr.TaxiRouteId)
             };
 
             result.TaxiRoutes = await taxiRoutes
                 .Skip((currentPage - 1) * taxiRoutesPerPage)
                 .Take(taxiRoutesPerPage)
-                .Select(h => new TaxiRouteServiceModel()
+                .Select(tr => new TaxiRouteServiceModel()
                 {
-                    PickUpAddress = h.PickUpAddress,
-                    DeliveryAddress = h.DeliveryAddress, 
-                    TaxiRouteId = h.TaxiRouteId,
-                    ImageUrlRouteGoogleMaps = h.ImageUrlRouteGoogleMaps,
-                    IsRented = h.RenterId != null,
-                    Price = h.Price,
-                    Title = h.Title
+                    PickUpAddress = tr.PickUpAddress,
+                    DeliveryAddress = tr.DeliveryAddress, 
+                    TaxiRouteId = tr.TaxiRouteId,
+                    ImageUrlRouteGoogleMaps = tr.ImageUrlRouteGoogleMaps,
+                    IsRented = tr.RenterId != null,
+                    Price = tr.Price,
+                    Title = tr.Title
                 })
                 .ToListAsync();
 
