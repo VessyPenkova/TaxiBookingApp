@@ -5,7 +5,6 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
 {
     public class TaxiRouteModel : ITaxiRouteModel
     {
-        [Key]
         public int TaxiRouteId { get; set; }
 
         [Required]
@@ -33,7 +32,7 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
         public string ImageUrlRouteGoogleMaps { get; set; } = null!;
 
         [Required]
-        [Display(Name = "Price")]
+        [Display(Name = "Price per trip")]
         [Range(0.00, 2000.00, ErrorMessage = "Price for trip must be a positive number and less than {2} leva")]
         public decimal Price { get; set; }
 
