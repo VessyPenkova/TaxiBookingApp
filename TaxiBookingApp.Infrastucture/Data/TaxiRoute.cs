@@ -52,11 +52,12 @@ namespace TaxiBookingApp.Infrastucture.Data
         public ApplicationUser? Renter { get; set; }
 
         public bool IsActive { get; set; } = true;
-        [Required]
+      
         public int CityId { get; set; }
         [Required]
+
         [ForeignKey(nameof(CityId))]
-        public City City { get; set; } = null!;
+        public Office City { get; set; } = null!;
 
     }
 }

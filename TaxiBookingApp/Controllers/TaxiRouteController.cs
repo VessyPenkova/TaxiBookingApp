@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Extensions;
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
-using TaxiBookingApp.Core.Models;
 
 namespace TaxiBookingApp.Controllers
 {
@@ -62,8 +61,8 @@ namespace TaxiBookingApp.Controllers
 
             if (await driverCarService.ExistsById(userId))
             {
-                int taxiRouteId = await driverCarService.GetDriverCarId(userId);
-                myTaxiRoutes = await taxiRouteService.AllTaxiRoutesByDriverCarId(taxiRouteId);
+                int driverCarId = await driverCarService.GetDriverCarId(userId);
+                myTaxiRoutes = await taxiRouteService.AllTaxiRoutesByDriverCarId(driverCarId);
             }
             else
             {

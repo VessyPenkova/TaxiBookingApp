@@ -19,8 +19,6 @@ namespace TaxiBookingApp.Infrastucture.Data
         [ForeignKey(nameof(UserId))]
         public ApplicationUser User { get; set; } = null!;
 
-       
-
     }
 }
 

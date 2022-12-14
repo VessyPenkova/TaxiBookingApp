@@ -36,10 +36,10 @@ namespace HouseRentingSystem.Core.Services.Admin
                 })
                 .ToListAsync();
 
-            string[] agentIds = result.Select(a => a.UserId).ToArray();
+            string[] driverCarIds = result.Select(a => a.UserId).ToArray();
 
             result.AddRange(await repo.AllReadonly<ApplicationUser>()
-                .Where(u => agentIds.Contains(u.Id) == false)
+                .Where(u => driverCarIds.Contains(u.Id) == false)
                 .Where(u => u.IsActive)
                 .Select(u => new UserServiceModel()
                 {

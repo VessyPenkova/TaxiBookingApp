@@ -3,10 +3,8 @@ using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Infrastucture.Data;
 using TaxiBookingApp.Infrastructure.Data.Common;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using TaxiBookingApp.Core.Models;
 
 namespace TaxiBookingApp.Core.Services
 {
@@ -50,6 +48,20 @@ namespace TaxiBookingApp.Core.Services
                         EF.Functions.Like(h.DeliveryAddress.ToLower(), searchTerm) ||
                         EF.Functions.Like(h.Description.ToLower(), searchTerm));
             }
+            //switch (sorting)
+            //{
+            //    case HouseSorting.Price:
+            //        houses = houses
+            //        .OrderBy(h => h.PricePerMonth);
+            //        break;
+            //    case HouseSorting.NotRentedFirst:
+            //        houses = houses
+            //        .OrderBy(h => h.RenterId);
+            //        break;
+            //    default:
+            //        houses = houses.OrderByDescending(h => h.Id);
+            //        break;
+            //}
 
             taxiRoutes = sorting switch
             {
@@ -193,7 +205,6 @@ namespace TaxiBookingApp.Core.Services
         {
             return (await repo.GetByIdAsync<TaxiRoute>(taxiRouteId)).CategoryId;
         }
-
         public async Task<bool> HasDriverCarWithId(int taxiRouteId, string currentUserId)
         {
             bool result = false;
@@ -210,8 +221,6 @@ namespace TaxiBookingApp.Core.Services
 
             return result;
         }
-
-
         public async Task<TaxiRouteDetailsModel> TaxiRouteDetailsByTaxiRouteId(int taxiRouteId)
         {
             return await repo.AllReadonly<TaxiRoute>()
@@ -228,7 +237,7 @@ namespace TaxiBookingApp.Core.Services
                     IsRented = t.RenterId != null,
                     Price = t.Price,
                     Title = t.Title,
-                    DriverCar = new DriverCarServiceModel()
+                    DriverCar = new Models.DriverCarServiceModel()
                     {
                         Email = t.DriverCar.User.Email,
                         PhoneNumber = t.DriverCar.PhoneNumber

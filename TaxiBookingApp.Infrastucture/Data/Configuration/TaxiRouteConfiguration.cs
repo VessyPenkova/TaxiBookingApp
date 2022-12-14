@@ -25,7 +25,8 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 316.80M,
                     CategoryId = 1,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e", 
+                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    CityId = 1,
 
                 },
                  new TaxiRoute()
@@ -39,7 +40,8 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 316.80M,
                     CategoryId = 2,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e"
+                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    CityId = 2,
 
                 },
                     new TaxiRoute()
@@ -54,6 +56,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     CategoryId = 2,
                     DriverCarId = 1,
                     RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    CityId = 2,
 
                 },
                    new TaxiRoute()
@@ -68,6 +71,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     CategoryId = 3,
                     DriverCarId = 1,
                     RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    CityId = 1,
 
                 },
                         new TaxiRoute()
@@ -82,6 +86,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     CategoryId = 4,
                     DriverCarId = 1,
                     RenterId ="6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    CityId = 1,
 
                 },
             };
