@@ -5,7 +5,7 @@ using TaxiBookingApp.Core.Models.Admin;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using TaxiBookingApp.Infrastucture.Data;
 
-namespace HouseRentingSystem.Core.Services.Admin
+namespace TaxiBookingApp.Core.Services.Admin
 {
     public class UserService : IUserService
     {
