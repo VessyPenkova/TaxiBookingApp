@@ -9,5 +9,7 @@ namespace TaxiBookingApp.Infrastucture.Data
         public string? LastName { get; set; }
 
         public bool IsActive { get; set; } = true;
+
+        //public int  UserId { get; set; }
     }
 }

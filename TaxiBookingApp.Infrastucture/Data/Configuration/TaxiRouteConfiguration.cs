@@ -25,7 +25,8 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 316.80M,
                     CategoryId = 5,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f582e",
+                              //6d5800-d726-4fc8-83d9-d6b3ac1f582e
                     OfficeId = "1",
 
                 },
@@ -40,7 +41,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 316.80M,
                     CategoryId = 2,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    //RenterId = "",
                     OfficeId = "2",
 
                 },
@@ -55,7 +56,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 158.40M,
                     CategoryId = 2,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    //RenterId = "",
                     OfficeId = "2",
 
                 },
@@ -70,7 +71,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 6.20M,
                     CategoryId = 3,
                     DriverCarId = 1,
-                    RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                    //RenterId = "",
                     OfficeId = "1",
 
                 },
@@ -85,7 +86,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 10.20M,
                     CategoryId = 4,
                     DriverCarId = 1,
-                    RenterId ="6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                   // RenterId ="",
                     OfficeId = "1",
 
                 },
@@ -100,7 +101,7 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                     Price = 10.20M,
                     CategoryId = 6,
                     DriverCarId = 1,
-                    RenterId ="6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                   // RenterId ="",
                     OfficeId = "1",
 
                 },

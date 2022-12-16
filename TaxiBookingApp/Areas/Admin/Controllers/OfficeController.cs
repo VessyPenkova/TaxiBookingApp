@@ -1,22 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Controllers;
 using TaxiBookingApp.Core.Contracts.Admin;
+using TaxiBookingApp.Core.Services;
+using TaxiBookingApp.Core.Services.Admin;
+using TaxiBookingApp.Models;
 
 namespace TaxiBookingApp.Areas.Admin.Controllers
 {
     public class OfficeController : BaseController
     {
-        private readonly IOfficeService officeService;
-        public OfficeController(IOfficeService _officeService)
+        public IActionResult Index()
         {
-            officeService = _officeService;
-        }
-
-        public async Task<IActionResult> All()
-        {
-            var model = await officeService.All();
-
-            return View(model);
+            return View();
         }
     }
 }

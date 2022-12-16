@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Models;
 using TaxiBookingApp.Core.Models.Admin;
+using TaxiBookingApp.Core.Models.OfficeM;
+using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using TaxiBookingApp.Infrastucture.Data;
 
@@ -48,43 +51,25 @@ namespace TaxiBookingApp.Core.Services.Admin
 
         }
       
-        public async Task<OfficeQueryModel> All(
-            string? office = null,
-            string ? searchTerm = null, 
-            int currentPage = 1, 
-            int citiesPerPage = 1)
-            
+        
+        
+
+        public async Task<IEnumerable<OfficeServiceModel>> LastThreeOffices()
         {
-            var result = new OfficeQueryModel();
+            return await repo.AllReadonly<Office>()
+              
+                .OrderByDescending(o => o.OfficeId)
+                .Select(o => new OfficeServiceModel()
+                {
+                    OfficeId = o.OfficeId,
+                    City = o.City,
+                    Country = o.Country,
+                    OfficeImageUrl = o.OfficeImageUrl,
+                    Phone = o.Phone,
 
-            var offices = repo.AllReadonly<Office>()
-            .Where(o => o.IsActive);
-
-            if (string.IsNullOrEmpty(searchTerm) == false)
-            {
-                searchTerm = $"%{searchTerm.ToLower()}%";
-
-                offices = offices
-                    .Where(o => EF.Functions.Like(o.City.ToLower(), searchTerm) ||
-                        EF.Functions.Like(o.Country.ToLower(), searchTerm) ||
-                        EF.Functions.Like(o.Phone.ToLower(), searchTerm));
-            }
-
-            result.Offices = await offices
-               .Skip((currentPage - 1) * citiesPerPage)
-               .Take(citiesPerPage)
-               .Select(o => new OfficeServiceModel()
-               {
-                   OfficeId = o.OfficeId,
-                   City = o.City,
-                   Country = o.Country,
-                   Phone = o.Phone,
-               })
-               .ToListAsync();
-
-            result.AddedOfficesCaout = await offices.CountAsync();
-
-            return result;
-        }      
+                })
+                .Take(3)
+                .ToListAsync();
+        }
     }
 }

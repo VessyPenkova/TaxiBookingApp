@@ -7,9 +7,9 @@ namespace TaxiBookingApp.Models
     {
         public const int OfficesPerPage = 3;
 
-        public string? Cities { get; set; }
+        public string Cities { get; set; } = null!;
 
-        public string? Countries { get; set; }
+        public string Countries { get; set; } = null!;
 
         public string? SearchTerm { get; set; }
 

@@ -18,6 +18,9 @@ namespace TaxiBookingApp.Infrastucture.Data
         public string Phone { get; set; } = null!;
         public  List<TaxiRoute> TaxiRoutes { get; set; }
         public bool IsActive { get; set; } = true;
+
+        [Required]
+        public string OfficeImageUrl { get; set; } = null!;
     }
 }
 

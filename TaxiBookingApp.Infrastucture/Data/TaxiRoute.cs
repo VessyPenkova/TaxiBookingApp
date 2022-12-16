@@ -49,13 +49,9 @@ namespace TaxiBookingApp.Infrastucture.Data
         [ForeignKey(nameof(DriverCarId))]
         public DriverCar DriverCar { get; set; } = null!;
 
-
-
-
-
         public string? RenterId { get; set; }
 
-        [ForeignKey(nameof(RenterId))]
+       [ForeignKey(nameof(RenterId))]
         public ApplicationUser? Renter { get; set; }
 
 

@@ -12,8 +12,8 @@ using TaxiBookingApp.Infrastucture.Data;
 namespace TaxiBookingApp.Infrastucture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221216102639_CatTypeAd")]
-    partial class CatTypeAd
+    [Migration("20221216215224_Initial1")]
+    partial class Initial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -239,32 +239,32 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dea1286-c198-4129-b3f3-b89d839582",
+                            Id = "dea1286-c198-4129-b3f3-b89d839581",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e1aa0646-412e-4e13-94c4-7a6775b5f562",
+                            ConcurrencyStamp = "3b893d31-88aa-4bc1-8c1f-d3afde4301b1",
                             Email = "agent@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "AGENT@MAIL.COM",
-                            NormalizedUserName = "AGENT@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJUgbm+0eOQANenTkE5Ex28HbWmzu7XKkyrF4sCFMBPhEdnj2IXwwyL97+ommz0xvg==",
+                            NormalizedEmail = "agent@mail.com",
+                            NormalizedUserName = "agent@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDLMtuzNYC7WbYEz/Uh1wpQxMNMKhTDo4SIUwpRdScFFv+LGebA9KKgVGAS0h20pqw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "agent@mail.com"
                         },
                         new
                         {
-                            Id = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                            Id = "6d5800-d726-4fc8-83d9-d6b3ac1f582e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1d00501b-2147-4487-bcf1-0c92fb14a940",
+                            ConcurrencyStamp = "37b9f78e-eb21-4d4e-838b-d93549f534bc",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "GUEST@MAIL.COM",
-                            NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECx3FjlRG+T74tSVH6RdyOuGFIzt+YL/Mk0pXObtdgSUqS4+BlLb4fdP+LQR6iLb8w==",
+                            NormalizedEmail = "guest@mail.com",
+                            NormalizedUserName = "guest@mail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBperbJ1O9FKWh1TrAgHcAsh10YbhHzWYSdjEuhsgh6ibuZ0LS6vGrwMrHQhr3W5XQ==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
@@ -349,7 +349,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             DriverCarId = 1,
                             PhoneNumber = "00359123456",
-                            UserId = "dea1286-c198-4129-b3f3-b89d839582"
+                            UserId = "dea1286-c198-4129-b3f3-b89d839581"
                         });
                 });
 
@@ -369,6 +369,10 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("OfficeImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -384,6 +388,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             City = "Plovdiv",
                             Country = "Bulgaria",
                             IsActive = true,
+                            OfficeImageUrl = "https://media.istockphoto.com/photos/outside-view-of-a-office-building-with-blue-windows-picture-id157439187",
                             Phone = "0035932111111"
                         },
                         new
@@ -392,6 +397,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             City = "Plovdiv",
                             Country = "Sofia",
                             IsActive = true,
+                            OfficeImageUrl = "https://th.bing.com/th/id/R.ea2068b541126d4df2a90dda8af3a849?rik=R7U0u2Gyiwjx6g&riu=http%3a%2f%2fwww.theboutiqueoffice.com%2fwp-content%2fuploads%2f2015%2f04%2fAked-Esplanad-For-Rent-in-Bukit-Jalil-03.png&ehk=4yTgJ6%2ftN%2f8PkOiP%2fsuwRbu2Qse0NDJ6p5QeCndFGeY%3d&risl=&pid=ImgRaw&r=0",
                             Phone = "0035932111111"
                         },
                         new
@@ -400,6 +406,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             City = "Wien",
                             Country = "Austria",
                             IsActive = true,
+                            OfficeImageUrl = "https://www.s2architecture.com/uploads/gallery/Truman-Office-Building/02.jpg",
                             Phone = "00431111111"
                         },
                         new
@@ -408,6 +415,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             City = "Paris",
                             Country = "France",
                             IsActive = true,
+                            OfficeImageUrl = "https://th.bing.com/th/id/R.71dc3e07a5b246f95b10290d63d07d76?rik=Evh2RFKPJOVltA&riu=http%3a%2f%2fwww.buildingbutler.com%2fimages%2fgallery%2flarge%2fbuilding-facades-3463-13832.jpg&ehk=DVp9ap9ScbrjzkKQi9SLz9RYrm82XS8RqsUgwYwmmSw%3d&risl=&pid=ImgRaw&r=0",
                             Phone = "00336111111"
                         });
                 });
@@ -489,7 +497,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Price = 316.80m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
+                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f582e",
                             Title = "Pivate Luxury"
                         },
                         new
@@ -504,7 +512,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "2",
                             PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
                             Price = 316.80m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "Sared"
                         },
                         new
@@ -519,7 +526,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "2",
                             PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
                             Price = 158.40m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "Sared with One"
                         },
                         new
@@ -534,7 +540,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Price = 6.20m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "OneWayLocal"
                         },
                         new
@@ -549,7 +554,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Price = 10.20m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "RoundTripLocal"
                         },
                         new
@@ -564,7 +568,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             OfficeId = "1",
                             PickUpAddress = "Krumovo 4009, Rodopi Municipality, Plovdiv District",
                             Price = 10.20m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "Charter"
                         });
                 });

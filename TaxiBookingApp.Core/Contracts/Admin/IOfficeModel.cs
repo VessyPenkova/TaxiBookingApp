@@ -8,6 +8,7 @@ namespace TaxiBookingApp.Core.Contracts.Admin
         public string City { get; }
         public string Country { get;  }
         public string Phone { get; } 
+        public string OfficeImageUrl { get; }
 
     }
 }

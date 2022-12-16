@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TaxiBookingApp.Core.Contracts.Admin;
 
-namespace TaxiBookingApp.Core.Models.Admin
+namespace TaxiBookingApp.Core.Models.OfficeM
 {
     public class OfficeModel : IOfficeModel
     {
@@ -23,5 +23,7 @@ namespace TaxiBookingApp.Core.Models.Admin
         [StringLength(15, MinimumLength = 6)]
 
         public string Phone { get; set; } = null!;
+        [Required]
+        public string OfficeImageUrl { get; set; } = null!;
     }
 }

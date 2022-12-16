@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TaxiBookingApp.Infrastucture.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class Initial1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,9 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -59,6 +62,22 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categorieses", x => x.CategoryId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Offices",
+                columns: table => new
+                {
+                    OfficeId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    OfficeImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Offices", x => x.OfficeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,7 +210,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                 name: "TaxiRoutes",
                 columns: table => new
                 {
-                    TaxiRoutId = table.Column<int>(type: "int", nullable: false)
+                    TaxiRouteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PickUpAddress = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
@@ -201,11 +220,13 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                     Price = table.Column<decimal>(type: "money", precision: 18, scale: 2, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     DriverCarId = table.Column<int>(type: "int", nullable: false),
-                    RenterId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    RenterId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    OfficeId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaxiRoutes", x => x.TaxiRoutId);
+                    table.PrimaryKey("PK_TaxiRoutes", x => x.TaxiRouteId);
                     table.ForeignKey(
                         name: "FK_TaxiRoutes_AspNetUsers_RenterId",
                         column: x => x.RenterId,
@@ -223,15 +244,21 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         principalTable: "DriversCars",
                         principalColumn: "DriverCarId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TaxiRoutes_Offices_OfficeId",
+                        column: x => x.OfficeId,
+                        principalTable: "Offices",
+                        principalColumn: "OfficeId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "6d5800-d726-4fc8-83d9-d6b3ac1f581e", 0, "79615578-b7b0-4c17-a979-994a4ad650aa", "guest@mail.com", false, false, null, "GUEST@MAIL.COM", "GUEST@MAIL.COM", "AQAAAAEAACcQAAAAEMdLQLduLiwYyi/elJR9QZmwS77q4eR/Uzmw+3sAc4uC34JyUzeue5Z468hGGi9NPw==", null, false, "92ad5232-b49a-47f2-914b-d557aa0a6664", false, "guest@mail.com" },
-                    { "dea1286-c198-4129-b3f3-b89d839582", 0, "c17df48b-f25a-4776-bac7-d6552da4387e", "agent@mail.com", false, false, null, "AGENT@MAIL.COM", "AGENT@MAIL.COM", "AQAAAAEAACcQAAAAEC+c1spLZQjwURMRjUEx72NDBLB77j/IhjXSeI9ZiEABb81FWeAef4eYhy57xC5Jqw==", null, false, "93fb775a-3bce-499e-91fc-adda48cd6240", false, "agent@mail.com" }
+                    { "6d5800-d726-4fc8-83d9-d6b3ac1f582e", 0, "37b9f78e-eb21-4d4e-838b-d93549f534bc", "guest@mail.com", false, null, true, null, false, null, "guest@mail.com", "guest@mail.com", "AQAAAAEAACcQAAAAEBperbJ1O9FKWh1TrAgHcAsh10YbhHzWYSdjEuhsgh6ibuZ0LS6vGrwMrHQhr3W5XQ==", null, false, null, false, "guest@mail.com" },
+                    { "dea1286-c198-4129-b3f3-b89d839581", 0, "3b893d31-88aa-4bc1-8c1f-d3afde4301b1", "agent@mail.com", false, null, true, null, false, null, "agent@mail.com", "agent@mail.com", "AQAAAAEAACcQAAAAEDLMtuzNYC7WbYEz/Uh1wpQxMNMKhTDo4SIUwpRdScFFv+LGebA9KKgVGAS0h20pqw==", null, false, null, false, "agent@mail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -242,24 +269,38 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                     { 1, "InerCitySingle" },
                     { 2, "InerCityShared" },
                     { 3, "OneWayLocal" },
-                    { 4, "RoundTripLocal" }
+                    { 4, "RoundTripLocal" },
+                    { 5, "Luxury" },
+                    { 6, "Charter" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Offices",
+                columns: new[] { "OfficeId", "City", "Country", "IsActive", "OfficeImageUrl", "Phone" },
+                values: new object[,]
+                {
+                    { "1", "Plovdiv", "Bulgaria", true, "https://media.istockphoto.com/photos/outside-view-of-a-office-building-with-blue-windows-picture-id157439187", "0035932111111" },
+                    { "2", "Plovdiv", "Sofia", true, "https://th.bing.com/th/id/R.ea2068b541126d4df2a90dda8af3a849?rik=R7U0u2Gyiwjx6g&riu=http%3a%2f%2fwww.theboutiqueoffice.com%2fwp-content%2fuploads%2f2015%2f04%2fAked-Esplanad-For-Rent-in-Bukit-Jalil-03.png&ehk=4yTgJ6%2ftN%2f8PkOiP%2fsuwRbu2Qse0NDJ6p5QeCndFGeY%3d&risl=&pid=ImgRaw&r=0", "0035932111111" },
+                    { "3", "Wien", "Austria", true, "https://www.s2architecture.com/uploads/gallery/Truman-Office-Building/02.jpg", "00431111111" },
+                    { "4", "Paris", "France", true, "https://th.bing.com/th/id/R.71dc3e07a5b246f95b10290d63d07d76?rik=Evh2RFKPJOVltA&riu=http%3a%2f%2fwww.buildingbutler.com%2fimages%2fgallery%2flarge%2fbuilding-facades-3463-13832.jpg&ehk=DVp9ap9ScbrjzkKQi9SLz9RYrm82XS8RqsUgwYwmmSw%3d&risl=&pid=ImgRaw&r=0", "00336111111" }
                 });
 
             migrationBuilder.InsertData(
                 table: "DriversCars",
                 columns: new[] { "DriverCarId", "PhoneNumber", "UserId" },
-                values: new object[] { 1, "00359123456", "dea1286-c198-4129-b3f3-b89d839582" });
+                values: new object[] { 1, "00359123456", "dea1286-c198-4129-b3f3-b89d839581" });
 
             migrationBuilder.InsertData(
                 table: "TaxiRoutes",
-                columns: new[] { "TaxiRoutId", "CategoryId", "DeliveryAddress", "Description", "DriverCarId", "ImageUrlRouteGoogleMaps", "PickUpAddress", "Price", "RenterId", "Title" },
+                columns: new[] { "TaxiRouteId", "CategoryId", "DeliveryAddress", "Description", "DriverCarId", "ImageUrlRouteGoogleMaps", "IsActive", "OfficeId", "PickUpAddress", "Price", "RenterId", "Title" },
                 values: new object[,]
                 {
-                    { 11, 1, "Bulgaria, Sofia, Bul, Alexander malinov, 78", "Wheather you want a tourist tour from Plovdiv to Sofia, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 316.80m, "6d5800-d726-4fc8-83d9-d6b3ac1f581e", "Pivate Luxury" },
-                    { 22, 2, "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0", "Bulgaria, Sofia, Bul, Alexander malinov, 78", 316.80m, "6d5800-d726-4fc8-83d9-d6b3ac1f581e", "Sared" },
-                    { 33, 2, "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0", "Bulgaria, Sofia, Bul, Alexander malinov, 78", 158.40m, "6d5800-d726-4fc8-83d9-d6b3ac1f581e", "Sared with One" },
-                    { 44, 3, "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria", "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine", 1, "https://www.google.com/maps/dir/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%90%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A6%D0%B0%D1%80+%D0%98%D0%B2%D0%B0%D0%B9%D0%BB%D0%BE,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.1462238,24.7489407,15.5z/data=!4m14!4m13!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!1m5!1m1!1s0x14acd1a346c61793:0xfac01f1ae582348c!2m2!1d24.7510692!2d42.1468859!3e0", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 6.20m, "6d5800-d726-4fc8-83d9-d6b3ac1f581e", "Sared" },
-                    { 55, 4, "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria", "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine", 1, "https://www.google.com/maps/dir/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%90%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A6%D0%B0%D1%80+%D0%98%D0%B2%D0%B0%D0%B9%D0%BB%D0%BE,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.147763,24.751646,16z/data=!3m1!4b1!4m20!4m19!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!1m5!1m1!1s0x14acd1a346c61793:0xfac01f1ae582348c!2m2!1d24.7510692!2d42.1468859!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 10.20m, "6d5800-d726-4fc8-83d9-d6b3ac1f581e", "Sared" }
+                    { 11, 5, "Bulgaria, Sofia, Bul, Alexander malinov, 78", "Wheather you want a tourist tour from Plovdiv to Sofia, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://le-cdn.hibuwebsites.com/8978d127e39b497da77df2a4b91f33eb/dms3rep/multi/opt/RSshutterstock_120889072-1920w.jpg", true, "1", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 316.80m, "6d5800-d726-4fc8-83d9-d6b3ac1f582e", "Pivate Luxury" },
+                    { 22, 2, "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://content.fortune.com/wp-content/uploads/2014/09/170030873.jpg?resize=1200,600", true, "2", "Bulgaria, Sofia, Bul, Alexander malinov, 78", 316.80m, null, "Sared" },
+                    { 33, 2, "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine", 1, "https://bulgaria-infoguide.com/wp-content/uploads/2018/10/green-taxi-1024x768.jpg", true, "2", "Bulgaria, Sofia, Bul, Alexander malinov, 78", 158.40m, null, "Sared with One" },
+                    { 44, 3, "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria", "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine", 1, "https://ekotaxi.bg/wp-content/uploads/2020/03/single_cab_redone-min-1-2048x1536.png", true, "1", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 6.20m, null, "OneWayLocal" },
+                    { 55, 4, "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria", "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine", 1, "https://content.fortune.com/wp-content/uploads/2014/09/170030873.jpg?resize=1200,600", true, "1", "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31", 10.20m, null, "RoundTripLocal" },
+                    { 66, 6, "Hartmann Road, London E16 2PX", "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine", 1, "https://th.bing.com/th/id/R.4f634d4c26e3f1a1cda6459f649713d1?rik=GYIFZQe3lUWPJA&pid=ImgRaw&r=0", true, "1", "Krumovo 4009, Rodopi Municipality, Plovdiv District", 10.20m, null, "Charter" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -317,6 +358,11 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                 column: "DriverCarId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TaxiRoutes_OfficeId",
+                table: "TaxiRoutes",
+                column: "OfficeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TaxiRoutes_RenterId",
                 table: "TaxiRoutes",
                 column: "RenterId");
@@ -350,6 +396,9 @@ namespace TaxiBookingApp.Infrastucture.Migrations
 
             migrationBuilder.DropTable(
                 name: "DriversCars");
+
+            migrationBuilder.DropTable(
+                name: "Offices");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
