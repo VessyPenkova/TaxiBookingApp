@@ -31,7 +31,7 @@ namespace TaxiBookingApp.Core.Services.Admin
         public async Task<bool> OfficeExistsById(string officeId)
         {
             return await repo.AllReadonly<Office>()
-               .AnyAsync(s => s.OfficeId == officeId);
+               .AnyAsync(o => o.OfficeId == officeId);
 
         }
         public async Task Create(string officeId, string city, string country, string phone)

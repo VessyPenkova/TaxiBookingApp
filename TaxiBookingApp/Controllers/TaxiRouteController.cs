@@ -1,10 +1,13 @@
-﻿using TaxiBookingApp.Core.Contracts;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+
+using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Core.Extensions;
+
 using TaxiBookingApp.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Extensions;
+
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
 
 namespace TaxiBookingApp.Controllers
@@ -39,8 +42,6 @@ namespace TaxiBookingApp.Controllers
                 query.Sorting,
                 query.CurrentPage,
                 AllTaxiRoutesQueryModel.TaxiRoutesPerPage);
-
-
 
             query.TotalTaxiRoutesCount = result.TotaltaxiRoutesCount;
             query.Categories = await taxiRouteService.AllCategoriesNames();
@@ -84,7 +85,7 @@ namespace TaxiBookingApp.Controllers
 
             if (information != model.GetInformation())
             {
-                TempData["ErrorMessage"] = "Don't touch my slug!";
+                TempData["ErrorMessage"] = "Don't touch!";
 
                 return RedirectToAction("Index", "Home");
             }
@@ -132,7 +133,7 @@ namespace TaxiBookingApp.Controllers
 
             int id = await taxiRouteService.Create(model, driverCarId);
 
-            return RedirectToAction(nameof(Details), new { id = id, information = model.GetInformation() });
+            return RedirectToAction(nameof(Details), new { id = id, information = model.GetInformation()});
         }
 
         [HttpGet]
@@ -145,7 +146,7 @@ namespace TaxiBookingApp.Controllers
 
             if ((await taxiRouteService.HasDriverCarWithId(id, User.Id())) == false)
             {
-                logger.LogInformation("User with id {0} attempted to open other drivercar taxiRoute", User.Id());
+                logger.LogInformation("User with id {0} attempted to take other drivercar taxiRoute", User.Id());
 
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -163,7 +164,8 @@ namespace TaxiBookingApp.Controllers
                 ImageUrlRouteGoogleMaps = taxiRoute.ImageUrlRouteGoogleMaps,
                 Price = taxiRoute.Price,
                 Title = taxiRoute.Title,
-                TaxiRouteCategories = await taxiRouteService.AllCategories()
+                TaxiRouteCategories = await taxiRouteService.AllCategories(),
+                OfficeId = taxiRoute.OfficeId
             };
 
             return View(model);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Core.Constans;
 using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Models;
@@ -6,6 +7,7 @@ using TaxiBookingApp.Extensions;
 
 namespace TaxiBookingApp.Controllers
 {
+    [Authorize]
     public class DriverCarController : Controller
     {
         private readonly IDriverCarService driverCarService;

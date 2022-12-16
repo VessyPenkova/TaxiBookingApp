@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiBookingApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using TaxiBookingApp.Infrastucture.Data;
 namespace TaxiBookingApp.Infrastucture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221216102639_CatTypeAd")]
+    partial class CatTypeAd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,14 +241,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "dea1286-c198-4129-b3f3-b89d839582",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b66aa19a-2167-4c48-8cb0-4ea5804b3b66",
+                            ConcurrencyStamp = "e1aa0646-412e-4e13-94c4-7a6775b5f562",
                             Email = "agent@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AGENT@MAIL.COM",
                             NormalizedUserName = "AGENT@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEELr/qjUc+mBJywCXGIdtQ9duITeqVIh6Qy3y0cnZbKJKKvl+JjOP3IgpwwKb5OfWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJUgbm+0eOQANenTkE5Ex28HbWmzu7XKkyrF4sCFMBPhEdnj2IXwwyL97+ommz0xvg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "agent@mail.com"
@@ -255,14 +257,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df3faae0-d61b-40ca-a766-a6fb450dc2c8",
+                            ConcurrencyStamp = "1d00501b-2147-4487-bcf1-0c92fb14a940",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMud+E8VRvjo3CZKpMwMH/ow/LgW6fupk6scclOiuJq7gmffZuuiRCPVf+QhZhZ+MA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECx3FjlRG+T74tSVH6RdyOuGFIzt+YL/Mk0pXObtdgSUqS4+BlLb4fdP+LQR6iLb8w==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"

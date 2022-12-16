@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
 
-namespace HouseRentingSystem.Controllers
+namespace TaxiBookingApp.Controllers
 {
     public class HomeController : Controller
     {

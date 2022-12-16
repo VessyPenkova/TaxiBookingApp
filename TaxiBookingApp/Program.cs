@@ -3,7 +3,6 @@ using TaxiBookingApp.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TaxiBookingApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -11,13 +10,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
 {
-    options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
-    options.SignIn.RequireConfirmedEmail = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedEmail");
-    options.SignIn.RequireConfirmedPhoneNumber = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedPhoneNumber");
-    options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:RequiredLength");
-    options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
+    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
 })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -50,28 +50,29 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllerRoute(
-     name: "default",
-     pattern: "{controller=Home}/{action=Index}/{id?}"
-   );
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllerRoute(
+//     name: "default",
+//     pattern: "{controller=Home}/{action=Index}/{id?}"
+//   );
 
-    endpoints.MapControllerRoute(
-      name: "areas",
-      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
+//    endpoints.MapControllerRoute(
+//      name: "areas",
+//      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+//    );
 
-    endpoints.MapControllerRoute(
-      name: "houseDetails",
-      pattern: "TaxiRoute/Details/{id}/{information}"
-    );
+//    endpoints.MapControllerRoute(
+//      name: "taxiRouteDetails",
+//      pattern: "TaxiRoute/Details/{id}/{information}"
+//    );
 
-    endpoints.MapRazorPages();
+//    endpoints.MapRazorPages();
 
-});
-   
+//});
 
+app.MapDefaultControllerRoute();
 app.MapRazorPages();
+app.UseResponseCaching();
 
 app.Run();

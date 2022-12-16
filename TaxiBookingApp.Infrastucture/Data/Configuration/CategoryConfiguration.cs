@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TaxiBookingApp.Infrastucture.Data.Configuration
 {
-    public  class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    internal  class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
 
         public void Configure(EntityTypeBuilder<Category> builder)
@@ -38,6 +38,16 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
                 {
                  CategoryId = 4,
                  Name = "RoundTripLocal"
+                },
+                new Category()
+                {
+                 CategoryId = 5,
+                 Name = "Luxury"
+                },
+                 new Category()
+                {
+                 CategoryId = 6,
+                 Name = "Charter"
                 },
 
             };

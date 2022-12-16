@@ -22,5 +22,8 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
         [Display(Name = "Is Rented")]
         public bool IsRented { get; init; }
 
+        [Required]
+        public string OfficeId { get; set; } = null!;
+
     }
 }

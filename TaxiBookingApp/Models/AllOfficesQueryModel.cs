@@ -1,12 +1,15 @@
-﻿using TaxiBookingApp.Core.Models;
-using TaxiBookingApp.Core.Models.Admin;
-using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models.Admin;
+
 
 namespace TaxiBookingApp.Models
 {
-    public class AllCitiesQueryModel
+    public class AllOfficesQueryModel
     {
-        public const int CitiesPerPage = 3;
+        public const int OfficesPerPage = 3;
+
+        public string? Cities { get; set; }
+
+        public string? Countries { get; set; }
 
         public string? SearchTerm { get; set; }
 

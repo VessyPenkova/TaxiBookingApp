@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaxiBookingApp.Core.Constans;
-using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Contracts.Admin;
-using TaxiBookingApp.Core.Services;
+
 
 namespace TaxiBookingApp.Areas.Admin.Controllers
 {

@@ -69,7 +69,8 @@ namespace TaxiBookingApp.Core.Services
                     ImageUrlRouteGoogleMaps = tr.ImageUrlRouteGoogleMaps,
                     IsRented = tr.RenterId != null,
                     Price = tr.Price,
-                    Title = tr.Title
+                    Title = tr.Title,
+                    OfficeId = tr.OfficeId
                 })
                 .ToListAsync();
 
@@ -108,7 +109,8 @@ namespace TaxiBookingApp.Core.Services
                     ImageUrlRouteGoogleMaps = c.ImageUrlRouteGoogleMaps,
                     IsRented = c.RenterId != null,
                     Price = c.Price,
-                    Title = c.Title
+                    Title = c.Title,
+                    OfficeId = c.OfficeId
                 })
                 .ToListAsync();
         }
@@ -125,7 +127,8 @@ namespace TaxiBookingApp.Core.Services
                     ImageUrlRouteGoogleMaps = c.ImageUrlRouteGoogleMaps,
                     IsRented = c.RenterId != null,
                     Price = c.Price,
-                    Title = c.Title
+                    Title = c.Title,
+                    OfficeId = c.OfficeId
                 })
                 .ToListAsync();
         }
@@ -145,7 +148,8 @@ namespace TaxiBookingApp.Core.Services
                 ImageUrlRouteGoogleMaps = model.ImageUrlRouteGoogleMaps,
                 Price = model.Price,
                 Title = model.Title,
-                DriverCarId = driverCarId
+                DriverCarId = driverCarId,
+                OfficeId = model.OfficeId
             };
 
             try
@@ -179,6 +183,7 @@ namespace TaxiBookingApp.Core.Services
             taxiRoute.PickUpAddress = model.PickUpAddress;
             taxiRoute.DeliveryAddress = model.DeliveryAddress;
             taxiRoute.CategoryId = model.CategoryId;
+            taxiRoute.OfficeId = model.OfficeId;
 
             await repo.SaveChangesAsync();
         }
@@ -223,6 +228,7 @@ namespace TaxiBookingApp.Core.Services
                     IsRented = t.RenterId != null,
                     Price = t.Price,
                     Title = t.Title,
+                    OfficeId = t.OfficeId,
                     DriverCar = new Models.DriverCarServiceModel()
                     {
                         Email = t.DriverCar.User.Email,
@@ -262,7 +268,8 @@ namespace TaxiBookingApp.Core.Services
                     ImageUrlRouteGoogleMaps = t.ImageUrlRouteGoogleMaps,
                     Title = t.Title,
                     PickUpAddress = t.PickUpAddress, 
-                    DeliveryAddress = t.DeliveryAddress
+                    DeliveryAddress = t.DeliveryAddress,
+                   
                 })
                 .Take(3)
                 .ToListAsync();

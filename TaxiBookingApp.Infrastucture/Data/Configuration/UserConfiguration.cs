@@ -23,9 +23,10 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
             {
                 Id = "dea1286-c198-4129-b3f3-b89d839582",
                 UserName = "agent@mail.com",
-                NormalizedUserName = "AGENT@MAIL.COM",
+                NormalizedUserName = "agent@mail.com",
                 Email = "agent@mail.com",
-                NormalizedEmail = "AGENT@MAIL.COM"
+                NormalizedEmail = "agent@mail.com",
+                
             };
             user.PasswordHash =
                 hasher.HashPassword(user, "agent123");
@@ -35,9 +36,9 @@ namespace TaxiBookingApp.Infrastucture.Data.Configuration
             {
                 Id = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                 UserName = "guest@mail.com",
-                NormalizedUserName = "GUEST@MAIL.COM",
+                NormalizedUserName = "guest@mail.com",
                 Email = "guest@mail.com",
-                NormalizedEmail = "GUEST@MAIL.COM",
+                NormalizedEmail = "guest@mail.com",
             };
             user.PasswordHash =
                 hasher.HashPassword(user, "guest123");

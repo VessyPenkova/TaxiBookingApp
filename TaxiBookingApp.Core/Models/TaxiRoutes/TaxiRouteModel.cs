@@ -39,6 +39,11 @@ namespace TaxiBookingApp.Core.Models.TaxiRoutes
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+        [Required]
+
+        public string OfficeId { get; set; } = null!;
+        [Required]
+
         public IEnumerable<TaxiRouteCategoryModel> TaxiRouteCategories { get; set; } = new List<TaxiRouteCategoryModel>();
     }
 }

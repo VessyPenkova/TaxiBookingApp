@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiBookingApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using TaxiBookingApp.Infrastucture.Data;
 namespace TaxiBookingApp.Infrastucture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221216101219_Seeding")]
+    partial class Seeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,14 +241,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "dea1286-c198-4129-b3f3-b89d839582",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b66aa19a-2167-4c48-8cb0-4ea5804b3b66",
+                            ConcurrencyStamp = "cd0f1cf2-91c0-4cec-bab0-44b15b133e66",
                             Email = "agent@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AGENT@MAIL.COM",
                             NormalizedUserName = "AGENT@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEELr/qjUc+mBJywCXGIdtQ9duITeqVIh6Qy3y0cnZbKJKKvl+JjOP3IgpwwKb5OfWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPpCGYd8kSN2ULExZ/rF94k41YZ4IlmCs0WnFCSRFi6qtXIKgsg/9GICvfwqBQdMmA==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "agent@mail.com"
@@ -255,14 +257,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df3faae0-d61b-40ca-a766-a6fb450dc2c8",
+                            ConcurrencyStamp = "84d7ae52-8ca9-4165-b9a5-e090c3e43910",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMud+E8VRvjo3CZKpMwMH/ow/LgW6fupk6scclOiuJq7gmffZuuiRCPVf+QhZhZ+MA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM9Bx0fNsZAE//RH/MUg26U492XoKm1NvOObsRXh/wA+hAOEl1DAOSjYLoNnLcAO4w==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
@@ -549,21 +551,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             Price = 10.20m,
                             RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             Title = "RoundTripLocal"
-                        },
-                        new
-                        {
-                            TaxiRouteId = 66,
-                            CategoryId = 6,
-                            DeliveryAddress = "Hartmann Road, London E16 2PX",
-                            Description = "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine",
-                            DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://th.bing.com/th/id/R.4f634d4c26e3f1a1cda6459f649713d1?rik=GYIFZQe3lUWPJA&pid=ImgRaw&r=0",
-                            IsActive = true,
-                            OfficeId = "1",
-                            PickUpAddress = "Krumovo 4009, Rodopi Municipality, Plovdiv District",
-                            Price = 10.20m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
-                            Title = "Charter"
                         });
                 });
 

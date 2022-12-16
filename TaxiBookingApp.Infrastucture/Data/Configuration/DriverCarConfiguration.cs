@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace TaxiBookingApp.Infrastucture.Data.Configuration
 {
-    internal class DriverCarConfiguration : IEntityTypeConfiguration<DriverCar>
+    public  class DriverCarConfiguration : IEntityTypeConfiguration<DriverCar>
     {
         public void Configure(EntityTypeBuilder<DriverCar> builder)
         {

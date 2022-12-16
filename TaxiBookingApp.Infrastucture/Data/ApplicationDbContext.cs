@@ -18,8 +18,7 @@ namespace TaxiBookingApp.Infrastucture.Data
             builder.ApplyConfiguration(new DriverCarConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new TaxiRouteConfiguration());
-            builder.ApplyConfiguration(new OfficeConfiguration());
-           
+            builder.ApplyConfiguration(new OfficeConfiguration());    
 
             base.OnModelCreating(builder);
         }

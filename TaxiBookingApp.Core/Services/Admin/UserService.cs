@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Models.Admin;
-using TaxiBookingApp.Infrastructure.Data.Common;
+using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Infrastucture.Data;
+using TaxiBookingApp.Infrastructure.Data.Common;
+
 
 namespace TaxiBookingApp.Core.Services.Admin
 {

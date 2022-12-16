@@ -6,7 +6,6 @@ namespace TaxiBookingApp.Core.Contracts
         public int TaxiRouteId { get; } 
 
         public string Title { get; }
-
        
         public string PickUpAddress { get; } 
 

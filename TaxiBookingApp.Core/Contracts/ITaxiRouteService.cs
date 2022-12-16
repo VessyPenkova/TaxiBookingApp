@@ -1,5 +1,4 @@
-﻿
-using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models.TaxiRoutes;
 
 namespace TaxiBookingApp.Core.Contracts
 {

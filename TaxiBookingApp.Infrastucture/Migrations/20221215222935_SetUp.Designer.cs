@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaxiBookingApp.Infrastucture.Data;
 
@@ -11,9 +12,10 @@ using TaxiBookingApp.Infrastucture.Data;
 namespace TaxiBookingApp.Infrastucture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221215222935_SetUp")]
+    partial class SetUp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,14 +241,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "dea1286-c198-4129-b3f3-b89d839582",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b66aa19a-2167-4c48-8cb0-4ea5804b3b66",
+                            ConcurrencyStamp = "1ce9c21a-9565-43d6-9ebe-dc4876ffb617",
                             Email = "agent@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "AGENT@MAIL.COM",
                             NormalizedUserName = "AGENT@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEELr/qjUc+mBJywCXGIdtQ9duITeqVIh6Qy3y0cnZbKJKKvl+JjOP3IgpwwKb5OfWw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI2XI65QWN7SZ7Y6NMrtVIIJu3fr9P+1dzJDV60IxNCLQ/GlBmL8T6uE7kVfbQZVQw==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "agent@mail.com"
@@ -255,14 +257,14 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             Id = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "df3faae0-d61b-40ca-a766-a6fb450dc2c8",
+                            ConcurrencyStamp = "8856dba4-6621-44f7-bc4e-a213f50a4047",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             IsActive = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMud+E8VRvjo3CZKpMwMH/ow/LgW6fupk6scclOiuJq7gmffZuuiRCPVf+QhZhZ+MA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBZMqn7epduUQqe2SXZDu8osHdEPapsZVzC5wlwmtXW/nfzvRPM3mje70R4lkoEDZg==",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
@@ -306,16 +308,6 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         {
                             CategoryId = 4,
                             Name = "RoundTripLocal"
-                        },
-                        new
-                        {
-                            CategoryId = 5,
-                            Name = "Luxury"
-                        },
-                        new
-                        {
-                            CategoryId = 6,
-                            Name = "Charter"
                         });
                 });
 
@@ -478,11 +470,11 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                         new
                         {
                             TaxiRouteId = 11,
-                            CategoryId = 5,
+                            CategoryId = 1,
                             DeliveryAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
                             Description = "Wheather you want a tourist tour from Plovdiv to Sofia, or simply buizness trip, this trip is private with a luxary limousine",
                             DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://le-cdn.hibuwebsites.com/8978d127e39b497da77df2a4b91f33eb/dms3rep/multi/opt/RSshutterstock_120889072-1920w.jpg",
+                            ImageUrlRouteGoogleMaps = "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0",
                             IsActive = true,
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
@@ -497,7 +489,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             DeliveryAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Description = "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine",
                             DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://content.fortune.com/wp-content/uploads/2014/09/170030873.jpg?resize=1200,600",
+                            ImageUrlRouteGoogleMaps = "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0",
                             IsActive = true,
                             OfficeId = "2",
                             PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
@@ -512,7 +504,7 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             DeliveryAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Description = "Wheather you want a tourist tour from Sofia to Plovdiv, or simply buizness trip, this trip is private with a luxary limousine",
                             DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://bulgaria-infoguide.com/wp-content/uploads/2018/10/green-taxi-1024x768.jpg",
+                            ImageUrlRouteGoogleMaps = "https://www.google.com/maps/dir/Software+University,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%8A%D1%80+%D0%9C%D0%B0%D0%BB%D0%B8%D0%BD%D0%BE%D0%B2%E2%80%9C+78,+e%D1%82.+1,+1799+%D0%B2.%D0%B7.+%D0%90%D0%BC%D0%B5%D1%80%D0%B8%D0%BA%D0%B0%D0%BD%D1%81%D0%BA%D0%B8+%D0%BA%D0%BE%D0%BB%D0%B5%D0%B6,+%D0%A1%D0%BE%D1%84%D0%B8%D1%8F/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.3909117,23.5074334,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40aa85cb55668ae1:0x447f9dd693e57def!2m2!1d23.3697846!2d42.6361915!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0",
                             IsActive = true,
                             OfficeId = "2",
                             PickUpAddress = "Bulgaria, Sofia, Bul, Alexander malinov, 78",
@@ -527,13 +519,13 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             DeliveryAddress = "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria",
                             Description = "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine",
                             DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://ekotaxi.bg/wp-content/uploads/2020/03/single_cab_redone-min-1-2048x1536.png",
+                            ImageUrlRouteGoogleMaps = "https://www.google.com/maps/dir/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%90%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A6%D0%B0%D1%80+%D0%98%D0%B2%D0%B0%D0%B9%D0%BB%D0%BE,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.1462238,24.7489407,15.5z/data=!4m14!4m13!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!1m5!1m1!1s0x14acd1a346c61793:0xfac01f1ae582348c!2m2!1d24.7510692!2d42.1468859!3e0",
                             IsActive = true,
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Price = 6.20m,
                             RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
-                            Title = "OneWayLocal"
+                            Title = "Sared"
                         },
                         new
                         {
@@ -542,28 +534,13 @@ namespace TaxiBookingApp.Infrastucture.Migrations
                             DeliveryAddress = "Antique Theartre, str. Tsar Ivaylo 4, Plovdiv, Bulgaria",
                             Description = "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine",
                             DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://content.fortune.com/wp-content/uploads/2014/09/170030873.jpg?resize=1200,600",
+                            ImageUrlRouteGoogleMaps = "https://www.google.com/maps/dir/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%90%D0%BD%D1%82%D0%B8%D1%87%D0%B5%D0%BD+%D1%82%D0%B5%D0%B0%D1%82%D1%8A%D1%80,+%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%A6%D0%B0%D1%80+%D0%98%D0%B2%D0%B0%D0%B9%D0%BB%D0%BE,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/%D0%9C%D0%B0%D0%BB%D0%BA%D0%B0%D1%82%D0%B0+%D0%B1%D0%B0%D0%B7%D0%B8%D0%BB%D0%B8%D0%BA%D0%B0+%D1%81+%D0%B1%D0%B0%D0%BF%D1%82%D0%B8%D1%81%D1%82%D0%B5%D1%80%D0%B8%D0%B9+V+-+VI+%D0%B2.,+%D0%B1%D1%83%D0%BB.+%E2%80%9E%D0%9A%D0%BD%D1%8F%D0%B3%D0%B8%D0%BD%D1%8F+%D0%9C%D0%B0%D1%80%D0%B8%D1%8F+%D0%9B%D1%83%D0%B8%D0%B7%D0%B0%E2%80%9C+31,+4000+%D0%A6%D0%B5%D0%BD%D1%82%D1%8A%D1%80,+%D0%9F%D0%BB%D0%BE%D0%B2%D0%B4%D0%B8%D0%B2/@42.147763,24.751646,16z/data=!3m1!4b1!4m20!4m19!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!1m5!1m1!1s0x14acd1a346c61793:0xfac01f1ae582348c!2m2!1d24.7510692!2d42.1468859!1m5!1m1!1s0x14acd1a10fdb0a3b:0x63ec420e6020dc6d!2m2!1d24.7579536!2d42.1463245!3e0",
                             IsActive = true,
                             OfficeId = "1",
                             PickUpAddress = "Bulgaria, Plovdiv, Bul.Kniyaginya Maria Luiza, 31",
                             Price = 10.20m,
                             RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
-                            Title = "RoundTripLocal"
-                        },
-                        new
-                        {
-                            TaxiRouteId = 66,
-                            CategoryId = 6,
-                            DeliveryAddress = "Hartmann Road, London E16 2PX",
-                            Description = "Wheather you want a tourist tour in Plovdiv, or simply buizness trip, this trip is will satisy your expectation with a luxary limousine",
-                            DriverCarId = 1,
-                            ImageUrlRouteGoogleMaps = "https://th.bing.com/th/id/R.4f634d4c26e3f1a1cda6459f649713d1?rik=GYIFZQe3lUWPJA&pid=ImgRaw&r=0",
-                            IsActive = true,
-                            OfficeId = "1",
-                            PickUpAddress = "Krumovo 4009, Rodopi Municipality, Plovdiv District",
-                            Price = 10.20m,
-                            RenterId = "6d5800-d726-4fc8-83d9-d6b3ac1f581e",
-                            Title = "Charter"
+                            Title = "Sared"
                         });
                 });
 

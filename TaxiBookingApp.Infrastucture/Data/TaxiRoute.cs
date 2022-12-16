@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+using Microsoft.AspNetCore.Identity;
 
 namespace TaxiBookingApp.Infrastucture.Data
 {
@@ -40,25 +41,33 @@ namespace TaxiBookingApp.Infrastucture.Data
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
 
+
+
         [Required]
         public int DriverCarId { get; set; }
 
         [ForeignKey(nameof(DriverCarId))]
         public DriverCar DriverCar { get; set; } = null!;
 
+
+
+
+
         public string? RenterId { get; set; }
 
         [ForeignKey(nameof(RenterId))]
         public ApplicationUser? Renter { get; set; }
 
+
+
         public bool IsActive { get; set; } = true;
         [Required]
-      
-        public int CityId { get; set; }
+
+        public string OfficeId { get; set; } = null!;
         [Required]
 
-        [ForeignKey(nameof(CityId))]
-        public Office City { get; set; } = null!;
+        [ForeignKey(nameof(OfficeId))]
+        public Office Office { get; set; } = null!;
 
     }
 }

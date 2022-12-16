@@ -1,16 +1,16 @@
-﻿
-using TaxiBookingApp.Core.Contracts;
+﻿using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Services;
 using TaxiBookingApp.Core.Services.Admin;
 using TaxiBookingApp.Infrastructure.Data.Common;
 
-namespace TaxiBookingApp.Extensions
+namespace Microsoft.Extensions.DependencyInjection
 {
-    public static  class TaxiBookingAppServiceCollectionExtension
+    public static class TaxiBookingAppServiceCollectionExtension
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices
+            (this IServiceCollection services)
         {
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<ITaxiRouteService, TaxiRouteService>();
