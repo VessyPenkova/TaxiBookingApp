@@ -6,6 +6,7 @@ using TaxiBookingApp.Core.Models.Admin;
 using TaxiBookingApp.Core.Models.OfficeM;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using TaxiBookingApp.Infrastucture.Data;
+using TaxiBookingApp.Models;
 
 namespace TaxiBookingApp.Controllers
 {
@@ -22,7 +23,7 @@ namespace TaxiBookingApp.Controllers
             repo = _repo;
         }
 
-      
+
         public async Task<bool> ExistsById(string userId)
         {
             return await repo.All<DriverCar>()
@@ -31,7 +32,7 @@ namespace TaxiBookingApp.Controllers
 
         public async Task Create(string officeId, string city, string country, string phone)
         {
-            
+
             var office = new OfficeServiceModel()
             {
                 OfficeId = officeId,
@@ -43,5 +44,19 @@ namespace TaxiBookingApp.Controllers
             await repo.SaveChangesAsync();
 
         }
-    }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> All([FromQuery] AllOfficesQueryModel query)
+        {
+            var result = await officeservicse.All(
+               query.SearchTerm,
+               query.CurrentPage,
+               AllOfficesQueryModel.OfficesPerPage);
+
+            query.Officees = result.Offices;
+
+            return View(query);
+        }
+    }   
 }

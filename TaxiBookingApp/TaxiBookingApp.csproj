@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\ServiceDependencies\" />
-    <Folder Include="Views\OfficeV\" />
   </ItemGroup>
 
 </Project>

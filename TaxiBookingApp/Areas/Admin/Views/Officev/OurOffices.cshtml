@@ -1,0 +1,32 @@
+﻿@using TaxiBookingApp
+@using TaxiBookingApp.Models
+@using TaxiBookingApp.Core.Models
+@using TaxiBookingApp.Core.Models.TaxiRoutes
+@using TaxiBookingApp.Core.Models.Statistics
+@using TaxiBookingApp.Core.Extensions
+@using TaxiBookingApp.Core.Models.Admin
+@using TaxiBookingApp.Areas.Admin.Models
+@using TaxiBookingApp.Core.Models.OfficeM
+
+@model OurOfficesViewModel
+
+@{
+    ViewBag.Title = "Our Offices";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<h4>Our Offices</h4>
+
+@if (!Model.AvailableOffices.Any())
+{
+    <h2 class="text-center">No Offices yet!</h2>
+}
+
+<div class="row">
+    @foreach (var office in Model.AvailableOffices)
+    {
+        @await Html.PartialAsync("~/Views/Shared/_OfficePartial.cshtml", office)
+    }
+</div>

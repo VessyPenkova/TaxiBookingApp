@@ -1,7 +1,6 @@
-﻿using TaxiBookingApp.Core.Models;
-using TaxiBookingApp.Core.Models.Admin;
-using TaxiBookingApp.Core.Models.OfficeM;
-using TaxiBookingApp.Core.Models.TaxiRoutes;
+﻿using TaxiBookingApp.Core.Models.OfficeM;
+
+
 
 namespace TaxiBookingApp.Core.Contracts.Admin
 {
@@ -12,6 +11,13 @@ namespace TaxiBookingApp.Core.Contracts.Admin
         Task<IEnumerable<OfficeServiceModel>> LastThreeOffices();
 
         Task Create(string officeId, string city, string country, string phone);
+
+        Task<OfficeQueryModel> All(
+          string? searchItem = null,
+          int currentPage = 1,
+          int officessPerPage = 3);
+
+
       
     }
 }

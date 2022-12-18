@@ -1,5 +1,5 @@
 ﻿using TaxiBookingApp.Core.Models.Admin;
-
+using TaxiBookingApp.Core.Models.OfficeM;
 
 namespace TaxiBookingApp.Models
 {
@@ -7,14 +7,17 @@ namespace TaxiBookingApp.Models
     {
         public const int OfficesPerPage = 3;
 
-        public string Cities { get; set; } = null!;
+        public string City { get; set; } = null!;
 
-        public string Countries { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string OfficePhone { get; set; } = null!;
 
         public string? SearchTerm { get; set; }
 
+        public int OfficeesRoutesCount { get; set; }
+
         public int CurrentPage { get; set; } = 1;
 
-        public IEnumerable<UserServiceModel> TaxiRoutes { get; set; } = Enumerable.Empty<UserServiceModel>();
+        public IEnumerable<OfficeServiceModel> Officees { get; set; } = Enumerable.Empty<OfficeServiceModel>();
     }
 }

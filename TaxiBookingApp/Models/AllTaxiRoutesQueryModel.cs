@@ -5,7 +5,7 @@ namespace TaxiBookingApp.Models
 {
     public class AllTaxiRoutesQueryModel
     {
-        public const int TaxiRoutesPerPage = 4;
+        public const int TaxiRoutesPerPage = 3;
 
         public string? Category { get; set; }
 

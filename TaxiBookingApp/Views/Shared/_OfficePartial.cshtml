@@ -1,0 +1,32 @@
+﻿@using TaxiBookingApp.Controllers
+@using TaxiBookingApp.Core.Contracts.Admin
+@using TaxiBookingApp.Core.Models.OfficeM
+@model OfficeServiceModel
+
+
+<div class="col-md-4">
+    <div class="card mb-3">
+        <img class="card-img-top" src="@Model.OfficeImageUrl" alt="Office view">
+        <div class="card-body text-center">
+            <h4>@Model.OfficeId</h4>
+            <h6>City: <b>@Model.City</b></h6>
+            <h6>Country: <b>@Model.Country</b></h6>         
+            <br />
+          
+            @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
+            {
+                <a asp-area="" asp-controller="Office" asp-action="Add" asp-route-id="@Model.OfficeId"
+               class="btn btn-warning">Add</a>
+
+                <p></p>
+                @if (Model.OfficeId != null)
+                {
+                    <form class="input-group-sm" asp-area="" asp-controller="Office"
+                  asp-action="Add" asp-route-id="@Model.OfficeId" method="post">
+                        <input class="btn btn-primary" type="submit" value="Add" />
+                    </form>
+                }
+            }
+        </div>
+    </div>
+</div>

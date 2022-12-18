@@ -33,6 +33,7 @@ namespace TaxiBookingApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Become(BecomeDriverCarModel model)
         {
             var userId = User.Id();
@@ -44,28 +45,28 @@ namespace TaxiBookingApp.Controllers
 
             if (await driverCarService.ExistsById(userId))
             {
-                TempData[MessageConstant.ErrorMessage] = "Вие вече сте шофьор";
+                TempData[MessageConstant.ErrorMessage] = "You are already driver";
 
                 return RedirectToAction("Index", "Home");
             }
 
             if (await driverCarService.UserWithPhoneNumberExists(model.PhoneNumber))
             {
-                TempData[MessageConstant.ErrorMessage] = "Телефона вече съществува";
+                TempData[MessageConstant.ErrorMessage] = "The phon already exist";
 
                 return RedirectToAction("Index", "Home");
             }
 
             if (await driverCarService.UserHasRents(userId))
             {
-                TempData[MessageConstant.ErrorMessage] = "Не трябва да имате наеми за да станете агент";
+                TempData[MessageConstant.ErrorMessage] = "You must not have a booking to become driver";
 
                 return RedirectToAction("Index", "Home");
             }
 
             await driverCarService.Create(userId, model.PhoneNumber);
 
-            return RedirectToAction("All", "House");
+            return RedirectToAction("All", "TaxiRoute");
         }
     }
 }

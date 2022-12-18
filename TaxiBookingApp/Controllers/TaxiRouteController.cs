@@ -9,6 +9,8 @@ using TaxiBookingApp.Models;
 using TaxiBookingApp.Extensions;
 
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
+using TaxiBookingApp.Infrastucture.Data;
+
 
 namespace TaxiBookingApp.Controllers
 {
@@ -110,6 +112,7 @@ namespace TaxiBookingApp.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> Add(TaxiRouteModel model)
         {
             if ((await driverCarService.ExistsById(User.Id())) == false)
@@ -131,10 +134,16 @@ namespace TaxiBookingApp.Controllers
 
             int driverCarId = await driverCarService.GetDriverCarId(User.Id());
 
-            int id = await taxiRouteService.Create(model, driverCarId);
+            int newtaxyrootId = await taxiRouteService.Create
+                (model.Title, model.PickUpAddress, model.DeliveryAddress, model.ImageUrlRouteGoogleMaps,
+                model.Price, model.CategoryId, driverCarId, model.Description, model.OfficeId);
 
-            return RedirectToAction(nameof(Details), new { id = id, information = model.GetInformation()});
+
+            return RedirectToAction(nameof(Details), new { id = newtaxyrootId });
+
         }
+
+
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
@@ -146,7 +155,7 @@ namespace TaxiBookingApp.Controllers
 
             if ((await taxiRouteService.HasDriverCarWithId(id, User.Id())) == false)
             {
-                logger.LogInformation("User with id {0} attempted to take other drivercar taxiRoute", User.Id());
+                logger.LogInformation("User with id {0} attempted to take other drivercar taxiRouteBooking", User.Id());
 
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });
             }
@@ -174,7 +183,7 @@ namespace TaxiBookingApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, TaxiRouteModel model)
         {
-           
+
             if (id != model.TaxiRouteId)
             {
                 return RedirectToPage("/Account/AccessDenied", new { area = "Identity" });

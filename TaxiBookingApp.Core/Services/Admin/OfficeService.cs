@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Exceptions;
-using TaxiBookingApp.Core.Models;
 using TaxiBookingApp.Core.Models.Admin;
 using TaxiBookingApp.Core.Models.OfficeM;
 using TaxiBookingApp.Core.Models.TaxiRoutes;
@@ -71,5 +70,31 @@ namespace TaxiBookingApp.Core.Services.Admin
                 .Take(3)
                 .ToListAsync();
         }
+
+      
+        public async Task<OfficeQueryModel> All(string? searchItem = null, int currentPage = 1, int officessPerPage = 1)
+        {
+            var result = new OfficeQueryModel();
+            var offices = repo.AllReadonly<Office>()
+                .Where(t => t.IsActive);
+
+            result.Offices = await offices
+                .Skip((currentPage - 1) * officessPerPage)
+                .Take(officessPerPage)
+                .Select(of => new OfficeServiceModel()
+                {
+                    City = of.City,
+                    Country = of.Country,
+                    OfficeImageUrl = of.OfficeImageUrl,
+                    Phone = of.Phone,
+                    OfficeId = of.OfficeId,
+                })
+                .ToListAsync();
+
+            result.AddedOfficesCaout = await offices.CountAsync();
+
+            return result;
+        }
+
     }
 }

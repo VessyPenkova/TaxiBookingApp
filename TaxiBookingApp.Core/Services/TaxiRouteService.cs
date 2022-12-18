@@ -137,19 +137,22 @@ namespace TaxiBookingApp.Core.Services
             return await repo.AllReadonly<Category>()
                 .AnyAsync(c => c.CategoryId == categoryId);
         }
-        public async Task<int> Create(TaxiRouteModel model, int driverCarId)
+
+        
+        public async Task<int> Create(string title, string pickUpQAddress, string deliveryAddress, string imageUrl,
+            decimal price, int categoryid, int drivercarId, string description, string officeId)
         {
             var taxiRoute = new TaxiRoute()
             {
-                PickUpAddress = model.PickUpAddress,
-                DeliveryAddress = model.DeliveryAddress,
-                CategoryId = model.CategoryId,
-                Description = model.Description,
-                ImageUrlRouteGoogleMaps = model.ImageUrlRouteGoogleMaps,
-                Price = model.Price,
-                Title = model.Title,
-                DriverCarId = driverCarId,
-                OfficeId = model.OfficeId
+                PickUpAddress = pickUpQAddress,
+                DeliveryAddress = deliveryAddress,
+                CategoryId = categoryid,
+                Description = description,
+                ImageUrlRouteGoogleMaps = imageUrl,
+                Price = price,
+                Title = title,
+                DriverCarId = drivercarId,
+                OfficeId = officeId
             };
 
             try
@@ -162,8 +165,9 @@ namespace TaxiBookingApp.Core.Services
                 logger.LogError(nameof(Create), ex);
                 throw new ApplicationException("Database failed to save info", ex);
             }
-
+            
             return taxiRoute.TaxiRouteId;
+            
         }
         public async Task Delete(int taxiRouteId)
         {
@@ -172,6 +176,16 @@ namespace TaxiBookingApp.Core.Services
 
             await repo.SaveChangesAsync();
         }
+        //public async Task Add(int taxiRouteId)
+        //{
+        //    var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteId);
+        //    taxiRoute.IsActive = true;
+
+        //    await repo.AddAsync<TaxiRoute>(taxiRoute);
+        //    await repo.SaveChangesAsync();
+        //}
+
+
         public async Task Edit(int taxiRouteid, TaxiRouteModel model)
         {
             var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteid);
@@ -297,5 +311,6 @@ namespace TaxiBookingApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
+       
     }
 }
