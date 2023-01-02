@@ -15,15 +15,15 @@
           
             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
             {
-                <a asp-area="" asp-controller="Office" asp-action="Add" asp-route-id="@Model.OfficeId"
-               class="btn btn-warning">Add</a>
+                <a asp-area="" asp-controller="Office" asp-action="All" asp-route-id="@Model.OfficeId"
+               class="btn btn-warning">All</a>
 
                 <p></p>
                 @if (Model.OfficeId != null)
                 {
                     <form class="input-group-sm" asp-area="" asp-controller="Office"
-                  asp-action="Add" asp-route-id="@Model.OfficeId" method="post">
-                        <input class="btn btn-primary" type="submit" value="Add" />
+                  asp-action="All" asp-route-id="@Model.OfficeId" method="post">
+                        <input class="btn btn-primary" type="submit" value="All" />
                     </form>
                 }
             }

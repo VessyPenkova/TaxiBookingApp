@@ -44,7 +44,7 @@
 //            {
 //                TaxiRouteId = 1,
 //                PickUpAddress = "",
-//                DeliveryAddress ="",
+//                DeliveryAddress = "",
 //                ImageUrlRouteGoogleMaps = "",
 //                Title = "",
 //                Description = "",

@@ -22,14 +22,16 @@ namespace TaxiBookingApp.Controllers
             officeservicse = _officeservicse;
             repo = _repo;
         }
-
+        [HttpGet]
+        [AllowAnonymous]
 
         public async Task<bool> ExistsById(string userId)
         {
             return await repo.All<DriverCar>()
                 .AnyAsync(u => u.UserId == userId);
         }
-
+        [HttpGet]
+        [AllowAnonymous]
         public async Task Create(string officeId, string city, string country, string phone)
         {
 
@@ -45,7 +47,7 @@ namespace TaxiBookingApp.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> All([FromQuery] AllOfficesQueryModel query)
         {

@@ -1,5 +1,7 @@
 ﻿@using TaxiBookingApp.Core.Extensions
 @using TaxiBookingApp.Core.Models.OfficeM
+
+
 @model OfficeQueryModel
 @{
     ViewData["Title"] = "Offices";
@@ -18,8 +20,8 @@
         <p class="lead">
             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Office" asp-action="Add" class="btn btn-primary btn-lg"
-                 role="button">Add Office</a>
+                <a asp-controller="Office" asp-action="All" class="btn btn-primary btn-lg"
+                 role="button">All</a>
             }
         </p>
     </div>
@@ -37,7 +39,7 @@
                  src="@office.OfficeImageUrl" alt="@office.City">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>
-                        <a class="btn btn-primary" asp-controller="Office" asp-action="Add"
+                        <a class="btn btn-primary" asp-controller="Office" asp-action="All"
                        asp-route-id="@office.City" asp-route-information="@office.Country"> @office.Phone</a>
                     </h5>
                 </div>
