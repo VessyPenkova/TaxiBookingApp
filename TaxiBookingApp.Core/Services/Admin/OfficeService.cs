@@ -96,5 +96,14 @@ namespace TaxiBookingApp.Core.Services.Admin
             return result;
         }
 
+        Task<IEnumerable<OfficeHomeModel>> IOfficeService.LastThreeOffices()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<OfficeServiceModel>> AllOfficesByCity(string city)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

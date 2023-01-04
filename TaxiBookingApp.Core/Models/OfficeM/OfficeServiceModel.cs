@@ -16,9 +16,9 @@ namespace TaxiBookingApp.Core.Models.OfficeM
         public string City { get; init; } = null!;
 
         public string Country { get; init; } = null!;
-
+        [Display(Name = "Phone")]
         public string Phone { get; init; } = null!;
-
+        [Display(Name = "Image URL")]
         public string OfficeImageUrl { get; init; } = null!;
     }
 }
