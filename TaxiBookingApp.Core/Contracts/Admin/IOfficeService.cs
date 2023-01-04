@@ -8,7 +8,7 @@ namespace TaxiBookingApp.Core.Contracts.Admin
     {
         Task<bool> OfficeExistsById(string OfficeId);
 
-        Task<IEnumerable<OfficeServiceModel>> LastThreeOffices();
+        Task<IEnumerable<OfficeHomeModel>> LastThreeOffices();
 
         Task Create(string officeId, string city, string country, string phone);
 
@@ -16,6 +16,9 @@ namespace TaxiBookingApp.Core.Contracts.Admin
           string? searchItem = null,
           int currentPage = 1,
           int officessPerPage = 3);
+
+        Task<IEnumerable<OfficeServiceModel>> AllOfficesByCity(string city);
+
 
 
       

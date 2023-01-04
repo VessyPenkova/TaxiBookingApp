@@ -13,8 +13,7 @@ namespace TaxiBookingApp.Core.Contracts
         //Task<TaxiRouteModel> Add(string title, string pickUpQAddress, string deliveryAddress,
         //    string imageUrl, decimal price, int categoryid, int drivercarId, string description, string officeId);
 
-        Task<int> Create(string title, string pickUpQAddress, string deliveryAddress,
-            string imageUrl, decimal price, int  categoryid, int drivercarId, string description, string officeId);
+        Task<int> Create(TaxiRouteModel model, int driverCarId);
 
         Task<TaxiRoutesQueryModel> All(
             string? category = null,
@@ -48,7 +47,6 @@ namespace TaxiBookingApp.Core.Contracts
         Task Rent(int taxiRouteid, string currentUserId);
 
         Task Leave(int taxiRouteid);
-
-        
+       
     }
 }

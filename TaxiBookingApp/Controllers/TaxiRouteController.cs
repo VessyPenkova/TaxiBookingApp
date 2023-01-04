@@ -9,7 +9,7 @@ using TaxiBookingApp.Models;
 using TaxiBookingApp.Extensions;
 
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
-using TaxiBookingApp.Infrastucture.Data;
+
 
 
 namespace TaxiBookingApp.Controllers
@@ -134,10 +134,7 @@ namespace TaxiBookingApp.Controllers
 
             int driverCarId = await driverCarService.GetDriverCarId(User.Id());
 
-            int newtaxyrootId = await taxiRouteService.Create
-                (model.Title, model.PickUpAddress, model.DeliveryAddress, model.ImageUrlRouteGoogleMaps,
-                model.Price, model.CategoryId, driverCarId, model.Description, model.OfficeId);
-
+            int newtaxyrootId = await taxiRouteService.Create(model, taxiRoute);
 
             return RedirectToAction(nameof(Details), new { id = newtaxyrootId });
 
