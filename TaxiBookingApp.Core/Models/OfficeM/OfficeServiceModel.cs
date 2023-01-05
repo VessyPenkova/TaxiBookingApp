@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using TaxiBookingApp.Core.Contracts.Admin;
+using TaxiBookingApp.Core.Contracts;
 
 namespace TaxiBookingApp.Core.Models.OfficeM
 {

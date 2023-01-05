@@ -9,9 +9,9 @@ using TaxiBookingApp.Core.Models.TaxiRoutes;
 using TaxiBookingApp.Infrastructure.Data.Common;
 using TaxiBookingApp.Infrastucture.Data;
 
-namespace TaxiBookingApp.Core.Services.Admin
+namespace TaxiBookingApp.Core.Services
 {
-    public  class OfficeService : IOfficeService
+    public class OfficeService : IOfficeService
     {
         private readonly IRepository repo;
 
@@ -49,14 +49,14 @@ namespace TaxiBookingApp.Core.Services.Admin
             await repo.SaveChangesAsync();
 
         }
-      
-        
-        
+
+
+
 
         public async Task<IEnumerable<OfficeServiceModel>> LastThreeOffices()
         {
             return await repo.AllReadonly<Office>()
-              
+
                 .OrderByDescending(o => o.OfficeId)
                 .Select(o => new OfficeServiceModel()
                 {
@@ -71,7 +71,7 @@ namespace TaxiBookingApp.Core.Services.Admin
                 .ToListAsync();
         }
 
-      
+
         public async Task<OfficeQueryModel> All(string? searchItem = null, int currentPage = 1, int officessPerPage = 1)
         {
             var result = new OfficeQueryModel();

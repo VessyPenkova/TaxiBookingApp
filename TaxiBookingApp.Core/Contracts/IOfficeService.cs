@@ -2,7 +2,7 @@
 
 
 
-namespace TaxiBookingApp.Core.Contracts.Admin
+namespace TaxiBookingApp.Core.Contracts
 {
     public interface IOfficeService
     {
@@ -21,6 +21,6 @@ namespace TaxiBookingApp.Core.Contracts.Admin
 
 
 
-      
+
     }
 }

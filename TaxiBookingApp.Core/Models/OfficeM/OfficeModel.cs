@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TaxiBookingApp.Core.Contracts.Admin;
+using TaxiBookingApp.Core.Contracts;
 
 namespace TaxiBookingApp.Core.Models.OfficeM
 {
