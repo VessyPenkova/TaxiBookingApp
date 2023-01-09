@@ -24,6 +24,7 @@ namespace TaxiBookingApp.Core.Models.OfficeM
 
         public string Phone { get; set; } = null!;
         [Required]
+        [Display(Name = "Image URL")]
         public string OfficeImageUrl { get; set; } = null!;
     }
 }

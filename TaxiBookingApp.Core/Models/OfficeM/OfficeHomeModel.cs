@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TaxiBookingApp.Core.Contracts.Admin;
+using TaxiBookingApp.Core.Contracts;
 
 namespace TaxiBookingApp.Core.Models.OfficeM
 {
-    internal class OfficeHomeModel : IOfficeModel
+    public class OfficeHomeModel : IOfficeModel
     {
         public string OfficeId { get; set; } = null!;
 

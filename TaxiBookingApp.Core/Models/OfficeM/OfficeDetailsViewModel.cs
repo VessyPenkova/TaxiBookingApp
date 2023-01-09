@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TaxiBookingApp.Core.Models.OfficeM
 {
-    internal class OfficeDetailsViewModel
+    public class OfficeDetailsViewModel
     {
+        public string City { get; set; } = null!;
+        public string Country { get; set; } = null!;
+        public string MyProperty { get; set; } = null!; 
+
     }
 }

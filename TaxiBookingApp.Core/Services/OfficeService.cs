@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using TaxiBookingApp.Core.Contracts;
 using TaxiBookingApp.Core.Contracts.Admin;
 using TaxiBookingApp.Core.Exceptions;
 using TaxiBookingApp.Core.Models.Admin;
@@ -47,11 +48,7 @@ namespace TaxiBookingApp.Core.Services
             };
             await repo.AddAsync(office);
             await repo.SaveChangesAsync();
-
         }
-
-
-
 
         public async Task<IEnumerable<OfficeServiceModel>> LastThreeOffices()
         {
@@ -70,8 +67,6 @@ namespace TaxiBookingApp.Core.Services
                 .Take(3)
                 .ToListAsync();
         }
-
-
         public async Task<OfficeQueryModel> All(string? searchItem = null, int currentPage = 1, int officessPerPage = 1)
         {
             var result = new OfficeQueryModel();
@@ -96,12 +91,51 @@ namespace TaxiBookingApp.Core.Services
             return result;
         }
 
-        Task<IEnumerable<OfficeHomeModel>> IOfficeService.LastThreeOffices()
+       
+        public Task<IEnumerable<OfficeServiceModel>> AllOfficesByCity(string city)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<OfficeServiceModel>> AllOfficesByCity(string city)
+        public Task<int> Create(OfficeModel model, int driverId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<OfficeDetailsModel> OfficeDetailsById(string city)
+        {
+            return await repo.AllReadonly<Office>()
+               
+               .Where(o => o.City == city)
+               .Select(o => new OfficeDetailsModel()
+               {
+                   City = o.City,
+                   Country = o.Country,
+                   OfficeId = o.OfficeId,
+                   OfficeImageUrl = o.OfficeImageUrl,
+                   Phone = o.Phone,
+                   
+                   DriverCar = new Models.DriverCarServiceModel()
+                   {
+                       Email = o.DriverCar.User.Email,
+                       PhoneNumber = o.DriverCar.PhoneNumber
+                   }
+
+               })
+               .FirstAsync();
+        }
+
+        public Task Edit(int OfficeId, OfficeModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int officeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<OfficeHomeModel>> IOfficeService.LastThreeOffices()
         {
             throw new NotImplementedException();
         }

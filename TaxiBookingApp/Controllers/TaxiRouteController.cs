@@ -9,8 +9,7 @@ using TaxiBookingApp.Models;
 using TaxiBookingApp.Extensions;
 
 using static TaxiBookingApp.Areas.Admin.Constrains.AdminConstants;
-
-
+using Microsoft.VisualBasic;
 
 namespace TaxiBookingApp.Controllers
 {
@@ -134,12 +133,11 @@ namespace TaxiBookingApp.Controllers
 
             int driverCarId = await driverCarService.GetDriverCarId(User.Id());
 
-            int newtaxyrootId = await taxiRouteService.Create(model, taxiRoute);
+            int newtaxyrootId = await taxiRouteService.Create(model, driverCarId);
 
-            return RedirectToAction(nameof(Details), new { id = newtaxyrootId });
+            return RedirectToAction(nameof(Details), new { id = newtaxyrootId, information = model.GetInformation()  });
 
         }
-
 
 
         [HttpGet]

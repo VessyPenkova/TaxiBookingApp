@@ -139,20 +139,19 @@ namespace TaxiBookingApp.Core.Services
         }
 
         
-        public async Task<int> Create(string title, string pickUpQAddress, string deliveryAddress, string imageUrl,
-            decimal price, int categoryid, int drivercarId, string description, string officeId)
+        public async Task<int> Create(TaxiRouteModel model, int driverCarId)
         {
             var taxiRoute = new TaxiRoute()
             {
-                PickUpAddress = pickUpQAddress,
-                DeliveryAddress = deliveryAddress,
-                CategoryId = categoryid,
-                Description = description,
-                ImageUrlRouteGoogleMaps = imageUrl,
-                Price = price,
-                Title = title,
-                DriverCarId = drivercarId,
-                OfficeId = officeId
+                PickUpAddress = model.PickUpAddress,
+                DeliveryAddress = model.DeliveryAddress,
+                CategoryId = model.CategoryId,
+                Description = model.Description,
+                ImageUrlRouteGoogleMaps = model.ImageUrlRouteGoogleMaps,
+                Price = model.Price,
+                Title = model.Title,
+                DriverCarId = model.TaxiRouteId,
+                OfficeId = model.OfficeId
             };
 
             try
@@ -169,6 +168,8 @@ namespace TaxiBookingApp.Core.Services
             return taxiRoute.TaxiRouteId;
             
         }
+
+      
         public async Task Delete(int taxiRouteId)
         {
             var taxiRoute = await repo.GetByIdAsync<TaxiRoute>(taxiRouteId);
@@ -311,6 +312,6 @@ namespace TaxiBookingApp.Core.Services
             await repo.SaveChangesAsync();
         }
 
-       
+      
     }
 }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TaxiBookingApp.Core.Models.OfficeM
 {
-    internal class OfficeSorting
+    public  enum OfficeSorting
     {
+        Newest = 0,
+        City = 1,
+        Country = 2
     }
 }

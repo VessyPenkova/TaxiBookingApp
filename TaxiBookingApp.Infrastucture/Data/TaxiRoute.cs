@@ -54,8 +54,6 @@ namespace TaxiBookingApp.Infrastucture.Data
        [ForeignKey(nameof(RenterId))]
         public ApplicationUser? Renter { get; set; }
 
-
-
         public bool IsActive { get; set; } = true;
         [Required]
 

@@ -6,11 +6,13 @@ namespace TaxiBookingApp.Core.Contracts
 {
     public interface IOfficeService
     {
-        Task<bool> OfficeExistsById(string OfficeId);
-
         Task<IEnumerable<OfficeHomeModel>> LastThreeOffices();
 
-        Task Create(string officeId, string city, string country, string phone);
+        Task<bool> OfficeExistsById(string OfficeId);
+
+       
+
+        Task <int> Create(OfficeModel model, int driverId);
 
         Task<OfficeQueryModel> All(
           string? searchItem = null,
@@ -19,8 +21,10 @@ namespace TaxiBookingApp.Core.Contracts
 
         Task<IEnumerable<OfficeServiceModel>> AllOfficesByCity(string city);
 
+        Task<OfficeDetailsModel> OfficeDetailsById(string city);
 
+        Task Edit(int OfficeId, OfficeModel model);
 
-
+        Task Delete(int officeId);
     }
 }
